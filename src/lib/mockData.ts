@@ -1,0 +1,397 @@
+import { CulturalItem } from "@/types";
+
+export const MOCK_ITEMS: CulturalItem[] = [
+  {
+    id: "1",
+    title: "Taj Mahal",
+    description: "An ivory-white marble mausoleum on the right bank of the river Yamuna, a UNESCO World Heritage Site.",
+    longDescription: "The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1631 by the fifth Mughal emperor, Shah Jahan, to house the tomb of his beloved wife, Mumtaz Mahal. The Taj Mahal is regarded as one of the finest examples of Mughal architecture, a style that combines elements from Persian, Ottoman Turkish, and Indian architectural styles. In 1983, the Taj Mahal became a UNESCO World Heritage Site. It is considered one of the greatest works of architecture in the world and has been called 'the jewel of Muslim art in India and one of the universally admired masterpieces of the world's heritage.'",
+    category: "Architecture",
+    tags: ["Mughal", "UNESCO", "Marble", "Heritage", "India"],
+    imageUrl: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80",
+    location: "Agra, India",
+    era: "17th Century",
+    rating: 4.9,
+    reviewCount: 48291,
+    featured: true,
+    createdAt: "2024-01-15",
+    artifacts: [
+      { id: "a1", name: "Shah Jahan's Calligraphy", description: "Original calligraphic inscriptions", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "1631" },
+      { id: "a2", name: "Marble Inlay Panel", description: "Pietra dura floral panel", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "1643" }
+    ],
+    curator: { name: "Dr. Priya Sharma", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100", title: "Senior Heritage Curator" }
+  },
+  {
+    id: "2",
+    title: "Flamenco",
+    description: "A highly expressive Spanish dance form involving intricate footwork, hand movements, and passionate vocals.",
+    longDescription: "Flamenco is a highly expressive art form from the Andalusia region of southern Spain. It includes cante (singing), toque (guitar playing), baile (dance), jaleo (vocalisations), palmas (handclapping) and pitos (finger snapping). First mentioned in literature in 1774, the genre underwent significant development in the 19th century. The flamenco art form has been inscribed by UNESCO on the Representative List of the Intangible Cultural Heritage of Humanity. Often referred to as one of the world's most recognized artistic forms, flamenco is practiced by Romani people in Spain as well as Spaniards of Moorish and Jewish origin.",
+    category: "Dance",
+    tags: ["Spanish", "UNESCO", "Traditional", "Romani", "Andalusia"],
+    imageUrl: "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&q=80",
+    location: "Andalusia, Spain",
+    era: "18th Century",
+    rating: 4.7,
+    reviewCount: 12840,
+    featured: true,
+    createdAt: "2024-02-10",
+    artifacts: [
+      { id: "a3", name: "Traditional Bata de Cola", description: "Historic flamenco dress with long train", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "1890" }
+    ],
+    curator: { name: "Isabella Moreno", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100", title: "Dance Heritage Specialist" }
+  },
+  {
+    id: "3",
+    title: "The Great Wall of China",
+    description: "A series of fortifications and walls built across the northern borders of China over centuries.",
+    longDescription: "The Great Wall of China is a series of fortifications that were built across the historical northern borders of ancient Chinese states and Imperial China. Several walls were built from as early as the 7th century BC, with selective stretches later joined together by Qin Shi Huang (220–206 BC), the first emperor of China. Later on, many successive dynasties have built and maintained multiple stretches of border walls. The best-known sections of the wall were built by the Ming dynasty (1368–1644). The wall stretches from Dandong in the east to Lop Lake in the west, along an arc that roughly delineates the southern edge of Inner Mongolia.",
+    category: "Architecture",
+    tags: ["Ming Dynasty", "UNESCO", "Fortification", "Ancient", "China"],
+    imageUrl: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80",
+    location: "Northern China",
+    era: "7th Century BC - 17th Century",
+    rating: 4.8,
+    reviewCount: 65432,
+    featured: true,
+    createdAt: "2024-01-20",
+    artifacts: [
+      { id: "a4", name: "Ming Dynasty Brick", description: "Original wall construction brick with inscriptions", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "1400s" }
+    ],
+    curator: { name: "Wei Chen", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100", title: "Chinese History Curator" }
+  },
+  {
+    id: "4",
+    title: "Jazz Music",
+    description: "An American music genre originating from African American communities with improvisation at its core.",
+    longDescription: "Jazz is a music genre that originated in the African-American communities of New Orleans, Louisiana, in the late 19th and early 20th centuries, with its roots in blues and ragtime. Since the 1920s Jazz Age, it has been recognized as a major form of musical expression in traditional and popular music. Jazz is characterized by swing and blue notes, complex chords, call and response vocals, polyrhythms, and improvisation. As jazz spread around the world, it drew on national, regional, and local musical cultures, which gave rise to different styles. New Orleans jazz began in the early 1910s, combining earlier brass band marches, French quadrilles, biguine, ragtime, and blues.",
+    category: "Music",
+    tags: ["American", "Improvisation", "Blues", "New Orleans", "Heritage"],
+    imageUrl: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&q=80",
+    location: "New Orleans, USA",
+    era: "Early 20th Century",
+    rating: 4.6,
+    reviewCount: 9821,
+    featured: false,
+    createdAt: "2024-03-05",
+    artifacts: [
+      { id: "a5", name: "Louis Armstrong's Trumpet", description: "Original instrument used in legendary recordings", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "1923" }
+    ],
+    curator: { name: "Marcus Williams", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100", title: "American Music Heritage Expert" }
+  },
+  {
+    id: "5",
+    title: "The Pyramids of Giza",
+    description: "Ancient Egyptian royal tombs built during the Fourth Dynasty, standing as a testament to human engineering.",
+    longDescription: "The Pyramids of Giza are ancient masonry structures located in Giza, Egypt. The Giza pyramid complex includes three large pyramids, several cemeteries, a workers' village, and an industrial complex. The ancient Egyptians built the Great Pyramid of Giza as a tomb for their pharaohs. The Great Pyramid of Giza (also known as the Pyramid of Cheops or Khufu) was constructed c. 2580–2560 BCE and is the oldest of the Seven Wonders of the Ancient World, and the only one to remain largely intact. The Great Sphinx of Giza, a large limestone statue of a reclining sphinx, is commonly believed to represent the face of Pharaoh Khafre.",
+    category: "Architecture",
+    tags: ["Ancient Egypt", "UNESCO", "Pharaoh", "Engineering", "Wonder"],
+    imageUrl: "https://images.unsplash.com/photo-1539650116574-8efeb43e2750?w=800&q=80",
+    location: "Giza, Egypt",
+    era: "26th Century BC",
+    rating: 5.0,
+    reviewCount: 102847,
+    featured: true,
+    createdAt: "2024-01-01",
+    artifacts: [
+      { id: "a6", name: "Canopic Jar", description: "Used to preserve mummified organs", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "2500 BC" },
+      { id: "a7", name: "Hieroglyphic Tablet", description: "Stone tablet with royal inscriptions", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "2580 BC" }
+    ],
+    curator: { name: "Dr. Amira Hassan", avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100", title: "Egyptian Antiquities Specialist" }
+  },
+  {
+    id: "6",
+    title: "Sushi",
+    description: "Traditional Japanese cuisine featuring vinegared rice combined with various ingredients including seafood.",
+    longDescription: "Sushi is a Japanese dish of prepared vinegared rice, usually with some sugar and salt, comprising a variety of ingredients, such as seafood, often raw, and vegetables. Styles of sushi and its presentation vary widely, but the one key ingredient is 'sushi rice', also referred to as shari or sumeshi. The modern form of sushi is believed to have been created by Hanaya Yohei, who invented nigiri-zushi around 1824 in the Edo period. Since the latter half of the 20th century, sushi has become popular in the United States and throughout the world. In Japan, sushi is usually consumed on special occasions, such as a celebration.",
+    category: "Cuisine",
+    tags: ["Japanese", "Seafood", "Traditional", "Culinary Art", "Tokyo"],
+    imageUrl: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80",
+    location: "Japan",
+    era: "8th Century - Present",
+    rating: 4.8,
+    reviewCount: 34521,
+    featured: false,
+    createdAt: "2024-02-28",
+    artifacts: [
+      { id: "a8", name: "Edo Period Sushi Mold", description: "Traditional wooden mold for oshi-zushi", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "1820" }
+    ],
+    curator: { name: "Keiko Tanaka", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100", title: "Japanese Culinary Historian" }
+  },
+  {
+    id: "7",
+    title: "Batik",
+    description: "A Javanese method of wax-resist dyeing applied to whole cloth, creating intricate patterns and designs.",
+    longDescription: "Batik is a technique of wax-resist dyeing applied to whole cloth. This technique originated from the island of Java, Indonesia. Batik is made either by drawing dots and lines of the resist with a spouted tool called a canting, or by printing the resist with a copper stamp called a cap. The applied wax resists dyes and therefore allows the artisan to color selectively by soaking the cloth in one color, removing the wax with boiling water, and repeating if multiple colors are desired. A cloth that is decorated using this technique is also called batik. UNESCO inscribed Indonesian batik on the Intangible Cultural Heritage list in October 2009.",
+    category: "Crafts",
+    tags: ["Indonesian", "UNESCO", "Textile", "Java", "Traditional"],
+    imageUrl: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80",
+    location: "Java, Indonesia",
+    era: "17th Century - Present",
+    rating: 4.5,
+    reviewCount: 7643,
+    featured: false,
+    createdAt: "2024-03-15",
+    artifacts: [
+      { id: "a9", name: "Traditional Canting Tool", description: "Ancient tool for applying wax patterns", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "1800" }
+    ],
+    curator: { name: "Siti Rahayu", avatar: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100", title: "Southeast Asian Crafts Expert" }
+  },
+  {
+    id: "8",
+    title: "Haiku Poetry",
+    description: "A form of Japanese short-form poetry emphasizing brevity, imagery, and the beauty of the natural world.",
+    longDescription: "Haiku is a type of short form poetry originally from Japan. Traditional Japanese haiku consist of three phrases that contain a kireji, or 'cutting word', 17 morae (sound units) in a 5, 7, 5 pattern, and a kigo, or seasonal reference. The haiku emerged from the hokku, the opening verse of a longer collaborative poem form known as haikai no renga. Although Matsuo Bashō (1644–1694), Yosa Buson (1716–1784), Kobayashi Issa (1763–1828) and Masaoka Shiki (1867–1902) are often considered the four haiku masters, there are many other haiku poets who have contributed to this literary form.",
+    category: "Literature",
+    tags: ["Japanese", "Poetry", "Nature", "Zen", "Minimalism"],
+    imageUrl: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80",
+    location: "Japan",
+    era: "17th Century - Present",
+    rating: 4.4,
+    reviewCount: 5280,
+    featured: false,
+    createdAt: "2024-04-01",
+    artifacts: [
+      { id: "a10", name: "Bashō Manuscript", description: "Original manuscript page from the master poet", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "1686" }
+    ],
+    curator: { name: "Hiroshi Yamamoto", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100", title: "Japanese Literature Scholar" }
+  },
+  {
+    id: "9",
+    title: "Aboriginal Dot Painting",
+    description: "A traditional Australian Indigenous art form using dots to create intricate patterns with deep cultural meaning.",
+    longDescription: "Aboriginal Australian art is one of the oldest art traditions in the world, stretching back more than 50,000 years. Contemporary Aboriginal art developed in the 1970s as a bridge between traditional culture and the modern world. The dot painting technique was introduced in 1971 when Geoffrey Bardon encouraged the Papunya elders to paint their Dreaming stories on canvas instead of the ground. The dots served to disguise the sacred symbolism beneath, making it more appropriate to share with outsiders. Today, Aboriginal art is one of Australia's most recognized cultural exports and continues to tell stories of Dreamtime, Country, and ancestral connections.",
+    category: "Art",
+    tags: ["Aboriginal", "Indigenous", "Dreamtime", "Australia", "Spiritual"],
+    imageUrl: "https://images.unsplash.com/photo-1574169208507-84376144848b?w=800&q=80",
+    location: "Australia",
+    era: "Prehistoric - Present",
+    rating: 4.7,
+    reviewCount: 8932,
+    featured: true,
+    createdAt: "2024-02-05",
+    artifacts: [
+      { id: "a11", name: "Ochre Grinding Stone", description: "Ancient tool for preparing natural pigments", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "Ancient" }
+    ],
+    curator: { name: "Mary Ngunawal", avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100", title: "Indigenous Art Custodian" }
+  },
+  {
+    id: "10",
+    title: "Carnival of Venice",
+    description: "An annual festival in Venice, Italy, known for its elaborate masks, costumes, and festive atmosphere.",
+    longDescription: "The Carnival of Venice is an annual festival held in Venice, Italy. The Carnival ends with the Christian celebration of Lent, forty days before Easter, on Shrove Tuesday. The festival is world famous for its elaborate masks and costumes. The Venetian Carnival dates back to 1162, when the people of Venice celebrated a military victory. The tradition grew over the centuries, reaching its peak during the 17th and 18th centuries under the Venetian Republic, becoming a time when social classes blurred and the normal rules of society were suspended. During the 18th century, Venetian masks were worn throughout the year, giving people complete anonymity.",
+    category: "Traditions",
+    tags: ["Italian", "Carnival", "Masks", "Festival", "Venice"],
+    imageUrl: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80",
+    location: "Venice, Italy",
+    era: "12th Century - Present",
+    rating: 4.6,
+    reviewCount: 21043,
+    featured: false,
+    createdAt: "2024-01-30",
+    artifacts: [
+      { id: "a12", name: "Bauta Mask", description: "Classic Venetian carnival mask from the 18th century", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "1750" }
+    ],
+    curator: { name: "Giovanni Ricci", avatar: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=100", title: "Italian Cultural Heritage Expert" }
+  },
+  {
+    id: "11",
+    title: "The Silk Road",
+    description: "An ancient network of trade routes connecting East Asia and Southeast Asia with South Asia and the West.",
+    longDescription: "The Silk Road was an ancient network of trade routes, formally established during the Han dynasty of China, which linked the regions of the ancient world in commerce between 130 BCE to 1453 CE. As the Silk Road was not a single thoroughfare from east to west, the term 'Silk Routes' has become increasingly favored by historians, though 'Silk Road' is the more commonly used and recognized term. The Silk Road derived its name from the lucrative trade in silk carried out along its length, beginning in the Han dynasty in China (207 BCE–220 CE). These trade routes are also responsible for spreading the plague across Eurasia and have been credited with facilitating the spread of Christianity and Islam.",
+    category: "Traditions",
+    tags: ["Ancient", "Trade", "China", "Eurasia", "Cultural Exchange"],
+    imageUrl: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80",
+    location: "Eurasia",
+    era: "130 BCE - 1453 CE",
+    rating: 4.8,
+    reviewCount: 15672,
+    featured: false,
+    createdAt: "2024-03-20",
+    artifacts: [
+      { id: "a13", name: "Tang Dynasty Silk", description: "Preserved silk fragment from the Han period", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "618 CE" }
+    ],
+    curator: { name: "Dr. Layla Al-Rashid", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100", title: "Ancient Trade Routes Scholar" }
+  },
+  {
+    id: "12",
+    title: "Kabuki Theatre",
+    description: "A classical form of Japanese dance-drama known for its elaborate costumes, makeup, and stylized action.",
+    longDescription: "Kabuki is a classical form of Japanese dance-drama known for its elaborate costumes and makeup, the use of special effects, and for the participation of only male actors. The word kabuki is believed to derive from the verb kabuku, meaning 'to lean' or 'to be out of the ordinary'. As a form of dance and drama, kabuki is distinct from the older forms of Japanese theater such as Noh, which predates kabuki by about 200 years. The art form became popular in the Edo period, with the earliest known kabuki performance in 1603, and was recognized by UNESCO as an Intangible Cultural Heritage in 2008.",
+    category: "Art",
+    tags: ["Japanese", "Theatre", "UNESCO", "Drama", "Performance"],
+    imageUrl: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80",
+    location: "Japan",
+    era: "17th Century - Present",
+    rating: 4.5,
+    reviewCount: 6714,
+    featured: false,
+    createdAt: "2024-04-10",
+    artifacts: [
+      { id: "a14", name: "Kumadori Makeup Set", description: "Traditional kabuki facial paint collection", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "1800s" }
+    ],
+    curator: { name: "Yuki Nakamura", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100", title: "Japanese Performing Arts Curator" }
+  },
+  {
+    id: "13",
+    title: "The Colosseum",
+    description: "An oval amphitheatre in the centre of the city of Rome, Italy, built of travertine limestone, tuff, and brick-faced concrete.",
+    longDescription: "The Colosseum is an oval amphitheatre in the centre of the city of Rome, Italy, just east of the Roman Forum. It is the largest ancient amphitheatre ever built, and is still the largest standing amphitheatre in the world today, despite its age. Construction began under the emperor Vespasian in 72 AD and was completed in 80 AD under his successor and heir, Titus. It could hold an estimated 50,000 to 80,000 spectators at various points of its history over the centuries, having an average audience of some 65,000. It was used for gladiatorial contests and public spectacles.",
+    category: "Architecture",
+    tags: ["Roman", "Empire", "Amphitheatre", "Ancient", "Italy"],
+    imageUrl: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80",
+    location: "Rome, Italy",
+    era: "Ancient",
+    rating: 4.9,
+    reviewCount: 110245,
+    featured: true,
+    createdAt: "2024-05-10",
+    artifacts: [
+      { id: "a15", name: "Gladiatorial Helmet", description: "Bronze helmet worn by murmillo gladiators", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "1st Century AD" }
+    ],
+    curator: { name: "Dr. Elena Rossi", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100", title: "Roman Antiquities Expert" }
+  },
+  {
+    id: "14",
+    title: "Starry Night",
+    description: "An oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh.",
+    longDescription: "The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an imaginary village. It has been in the permanent collection of the Museum of Modern Art in New York City since 1941. Regarded as among Van Gogh's finest works, The Starry Night is one of the most recognized paintings in Western culture.",
+    category: "Art",
+    tags: ["Post-Impressionism", "Van Gogh", "Painting", "Dutch", "Masterpiece"],
+    imageUrl: "https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?w=800&q=80",
+    location: "Museum of Modern Art, NYC",
+    era: "19th Century",
+    rating: 5.0,
+    reviewCount: 23010,
+    featured: true,
+    createdAt: "2024-05-11",
+    artifacts: [
+      { id: "a16", name: "Van Gogh's Palette", description: "Original wooden palette used for mixing oils", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "1889" }
+    ],
+    curator: { name: "Claire Dupont", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100", title: "Modern Art Historian" }
+  },
+  {
+    id: "15",
+    title: "Classical Symphony",
+    description: "An extended musical composition in Western classical music, most often written by composers for orchestra.",
+    longDescription: "A symphony is an extended musical composition in Western classical music, most often written by composers for orchestra. Although the term has had many meanings from its origins in the ancient Greek era, by the late 18th century the word had taken on the meaning common today: a work usually consisting of multiple distinct sections or movements, often four, with the first movement in sonata form. Symphonies are almost always scored for an orchestra consisting of a string section (violin, viola, cello, and double bass), brass, woodwind, and percussion instruments.",
+    category: "Music",
+    tags: ["Classical", "Orchestra", "Beethoven", "Mozart", "Symphony"],
+    imageUrl: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&q=80",
+    location: "Vienna, Austria",
+    era: "18th Century",
+    rating: 4.8,
+    reviewCount: 15400,
+    featured: false,
+    createdAt: "2024-05-12",
+    artifacts: [
+      { id: "a17", name: "Original Sheet Music", description: "Beethoven's Symphony No. 5 handwritten score", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "1808" }
+    ],
+    curator: { name: "Johann Bauer", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100", title: "Classical Music Archivist" }
+  },
+  {
+    id: "16",
+    title: "The Odyssey",
+    description: "One of two major ancient Greek epic poems attributed to Homer. It is one of the oldest extant works of literature still read.",
+    longDescription: "The Odyssey is one of two major ancient Greek epic poems attributed to Homer. It is one of the oldest extant works of literature still read by contemporary audiences. As with the Iliad, the poem is divided into 24 books. It follows the Greek hero Odysseus, king of Ithaca, and his journey home after the Trojan War. After the war itself, which lasted ten years, his journey lasts for ten additional years, during which time he encounters many perils and all his crewmates are killed. The epic is considered a fundamental text of the Western canon.",
+    category: "Literature",
+    tags: ["Greek", "Epic", "Homer", "Mythology", "Classic"],
+    imageUrl: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=80",
+    location: "Ancient Greece",
+    era: "Ancient",
+    rating: 4.7,
+    reviewCount: 30541,
+    featured: false,
+    createdAt: "2024-05-13",
+    artifacts: [
+      { id: "a18", name: "Papyrus Fragment", description: "Early manuscript fragment featuring Book 1", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "2nd Century AD" }
+    ],
+    curator: { name: "Prof. Arthur Pendelton", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100", title: "Classics Scholar" }
+  },
+  {
+    id: "17",
+    title: "Neapolitan Pizza",
+    description: "A style of pizza made with tomatoes and mozzarella cheese, originating in Naples, Italy.",
+    longDescription: "Neapolitan pizza, also known as Naples-style pizza, is a style of pizza made with tomatoes and mozzarella cheese. The tomatoes must be either San Marzano tomatoes or Pomodorini del Piennolo del Vesuvio, which grow on the volcanic plains to the south of Mount Vesuvius. The cheese must be Mozzarella di Bufala Campana or Fior di Latte. Neapolitan pizza is a Traditional Speciality Guaranteed product in Europe, and the art of its making is included on UNESCO's list of intangible cultural heritage.",
+    category: "Cuisine",
+    tags: ["Italian", "Pizza", "Naples", "Culinary", "Traditional"],
+    imageUrl: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80",
+    location: "Naples, Italy",
+    era: "18th Century",
+    rating: 4.9,
+    reviewCount: 88520,
+    featured: false,
+    createdAt: "2024-05-14",
+    artifacts: [
+      { id: "a19", name: "Antique Pizza Peel", description: "Traditional wooden peel used in wood-fired ovens", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "1850s" }
+    ],
+    curator: { name: "Marco Bianchini", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100", title: "Italian Gastronomy Expert" }
+  },
+  {
+    id: "18",
+    title: "Diwali Festival",
+    description: "The Hindu festival of lights, with its variations also celebrated in other Indian religions.",
+    longDescription: "Diwali, also known as Deepavali, is a festival of lights and one of the major festivals celebrated by Hindus, Jains, Sikhs, and some Buddhists, notably Newar Buddhists. The festival usually lasts five days and is celebrated during the Hindu lunisolar month Kartika. One of the most popular festivals of Hinduism, Diwali symbolizes the spiritual 'victory of light over darkness, good over evil, and knowledge over ignorance'. The festival is widely associated with Lakshmi, goddess of prosperity, with many other regional traditions connecting the holiday to Sita and Rama.",
+    category: "Traditions",
+    tags: ["Festival", "India", "Hindu", "Lights", "Celebration"],
+    imageUrl: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80",
+    location: "India",
+    era: "Ancient",
+    rating: 4.8,
+    reviewCount: 95400,
+    featured: true,
+    createdAt: "2024-05-15",
+    artifacts: [
+      { id: "a20", name: "Terracotta Diya", description: "Ancient oil lamp used during deepavali celebrations", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "16th Century" }
+    ],
+    curator: { name: "Priya Desai", avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100", title: "South Asian Cultural Historian" }
+  },
+  {
+    id: "19",
+    title: "Murano Glassmaking",
+    description: "A famous glassmaking tradition originating from the Venetian island of Murano, known for its vibrance and craftsmanship.",
+    longDescription: "Murano glass is glass made on the Venetian island of Murano, which has specialized in fancy glasswares for centuries. The Murano glassmakers were Europe's only makers of mirrors for a long while, and developed or refined many technologies including crystalline glass, enamelled glass (smalto), glass with threads of gold (aventurine), multicolored glass (millefiori), milk glass (lattimo), and imitation gemstones made of glass. Today, the artisans of Murano still employ these century-old techniques, crafting everything from contemporary art glass and glass jewelry to Murano glass chandeliers.",
+    category: "Crafts",
+    tags: ["Glass", "Venice", "Artisan", "Murano", "Italian"],
+    imageUrl: "https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee?w=800&q=80",
+    location: "Venice, Italy",
+    era: "Medieval",
+    rating: 4.6,
+    reviewCount: 12053,
+    featured: false,
+    createdAt: "2024-05-16",
+    artifacts: [
+      { id: "a21", name: "Millefiori Paperweight", description: "Intricate flower-patterned glass paperweight", imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", date: "19th Century" }
+    ],
+    curator: { name: "Luca Moretti", avatar: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=100", title: "Venetian Artisan Crafts Scholar" }
+  },
+  {
+    id: "20",
+    title: "Classical Ballet",
+    description: "A highly formalized and technical style of ballet based on techniques originally developed in France and Russia.",
+    longDescription: "Classical ballet is any of the traditional, formal styles of ballet that exclusively employ classical ballet technique. It is known for its aesthetics and rigorous technique (such as pointe work, turnout of the legs, and high extensions), its flowing, precise movements, and its ethereal qualities. There are stylistic variations related to an area or origin, which are denoted by classifications such as French ballet, Italian ballet, English ballet, and Russian ballet. Tchaikovsky's Swan Lake and The Nutcracker are among the most globally famous classical ballets.",
+    category: "Dance",
+    tags: ["Ballet", "Classical", "Performance", "Theatre", "Russian"],
+    imageUrl: "https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&q=80",
+    location: "Russia & France",
+    era: "19th Century",
+    rating: 4.9,
+    reviewCount: 35002,
+    featured: true,
+    createdAt: "2024-05-17",
+    artifacts: [
+      { id: "a22", name: "Pointe Shoes", description: "Original signed pointe shoes from Anna Pavlova", imageUrl: "https://images.unsplash.com/photo-1585036156171-384164a8c675?w=400", date: "1910" }
+    ],
+    curator: { name: "Katarina Ivanova", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100", title: "Dance Heritage Director" }
+  }
+];
+
+export const CATEGORIES = [
+  "All", "Architecture", "Art", "Music", "Literature",
+  "Cuisine", "Traditions", "Crafts", "Dance",
+] as const;
+
+export const ERAS = [
+  "All Eras", "Ancient", "Medieval", "Renaissance",
+  "17th Century", "18th Century", "19th Century",
+  "20th Century", "Contemporary",
+] as const;

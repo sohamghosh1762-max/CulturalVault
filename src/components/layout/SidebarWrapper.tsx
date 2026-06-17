@@ -1,0 +1,34 @@
+"use client";
+
+import { ReactNode, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+
+import { Sidebar } from "@/components/layout/side ber";
+import { useSidebar } from "@/context/SidebarContext";
+import { cn } from "@/utils";
+
+const HIDDEN_PATHS = ["/", "/signin", "/signup", "/login", "/admin/login", "/admin/signup"];
+
+export function SidebarWrapper({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const [isAuth, setIsAuth] = useState(false);
+  const { collapsed } = useSidebar();
+
+  useEffect(() => {
+    setIsAuth(!!localStorage.getItem("user_token"));
+  }, [pathname]);
+
+  const showSidebar = isAuth && !pathname.startsWith("/admin") && !HIDDEN_PATHS.includes(pathname);
+
+  return (
+    <div className="flex min-h-screen w-full">
+      {showSidebar && <Sidebar />}
+      <main className={cn(
+        "flex-1 transition-all duration-300 w-full",
+        showSidebar ? (collapsed ? "md:pl-[72px]" : "md:pl-[240px]") : ""
+      )}>
+        {children}
+      </main>
+    </div>
+  );
+}
