@@ -386,8 +386,17 @@ export const MOCK_ITEMS: CulturalItem[] = [
 ];
 
 export const CATEGORIES = [
-  "All", "Architecture", "Art", "Music", "Literature",
-  "Cuisine", "Traditions", "Crafts", "Dance",
+  "All",
+  "Stories",
+  "Articles",
+  "Architecture",
+  "Art",
+  "Music",
+  "Literature",
+  "Cuisine",
+  "Traditions",
+  "Crafts",
+  "Dance",
 ] as const;
 
 export const ERAS = [

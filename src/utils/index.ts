@@ -35,6 +35,9 @@ export function getCategoryColor(category: string): string {
 
 export function getCategoryIcon(category: string): string {
   const icons: Record<string, string> = {
+    Stories: "📖",
+    Articles: "📰",
+    
     Architecture: "🏛️",
     Art: "🎨",
     Music: "🎵",
