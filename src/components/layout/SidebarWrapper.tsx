@@ -12,13 +12,15 @@ const HIDDEN_PATHS = ["/", "/signin", "/signup", "/login", "/admin/login", "/adm
 export function SidebarWrapper({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [isAuth, setIsAuth] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { collapsed } = useSidebar();
 
   useEffect(() => {
+    setMounted(true);
     setIsAuth(!!localStorage.getItem("user_token"));
   }, [pathname]);
 
-  const showSidebar = isAuth && !pathname.startsWith("/admin") && !HIDDEN_PATHS.includes(pathname);
+  const showSidebar = mounted && isAuth && !pathname.startsWith("/admin") && !HIDDEN_PATHS.includes(pathname);
 
   return (
     <div className="flex min-h-screen w-full">

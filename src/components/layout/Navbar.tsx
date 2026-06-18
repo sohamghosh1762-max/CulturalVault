@@ -39,16 +39,11 @@ export function Navbar() {
   const authenticatedNavLinks = [
     { href: "/dashboard", label: t.dashboard },
     { href: "/explore", label: t.explore },
-    { href: "/chatbot", label: "AI Chat" },
+    { href: "/chat", label: "AI Chat" },
     { href: "/profile", label: "Profile" },
   ];
 
-  const publicNavLinks = [
-    { href: "/explore", label: t.explore },
-    { href: "/bookmarks", label: t.bookmarks },
-    { href: "/risk-map", label: "Risk Dashboard" },
-    { label: "Stories", href: "/stories" },
-  ];
+  const publicNavLinks: { href: string; label: string }[] = [];
 
   const navLinks = isAuth ? authenticatedNavLinks : publicNavLinks;
 
@@ -111,18 +106,20 @@ export function Navbar() {
                 {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
               </button>
             )}
-            <Link
-              href="/bookmarks"
-              className="relative p-2 rounded-lg hover:bg-secondary transition-colors"
-              aria-label={t.bookmarks}
-            >
-              <Bookmark size={18} />
-              {count > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-primary text-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
-                  {count > 9 ? "9+" : count}
-                </span>
-              )}
-            </Link>
+            {mounted && isAuth && (
+              <Link
+                href="/bookmarks"
+                className="relative p-2 rounded-lg hover:bg-secondary transition-colors"
+                aria-label={t.bookmarks}
+              >
+                <Bookmark size={18} />
+                {count > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-primary text-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
+                    {count > 9 ? "9+" : count}
+                  </span>
+                )}
+              </Link>
+            )}
             
             {mounted && isAuth ? (
               <div className="flex items-center gap-2">
@@ -146,57 +143,29 @@ export function Navbar() {
             ) : mounted && !isAuth ? (
               <Link
                 href="/signin"
-                className="hidden sm:flex items-center text-sm font-semibold bg-primary text-primary-foreground px-4 py-2 rounded-full hover:bg-primary/90 transition-colors ml-2"
+                className="flex items-center text-sm font-semibold bg-primary text-primary-foreground px-4 py-2 rounded-full hover:bg-primary/90 transition-colors ml-2"
               >
                 {t.signIn}
               </Link>
             ) : null}
 
-            <button
-              className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
-              onClick={() => {
-                if (isAuth) {
+            {mounted && isAuth && (
+              <button
+                className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
+                onClick={() => {
                   setSidebarMobileOpen(!sidebarMobileOpen);
-                } else {
-                  setMobileOpen(!mobileOpen);
-                }
-              }}
-              aria-label={t.menu}
-            >
-              {isAuth ? (
-                sidebarMobileOpen ? <X size={18} /> : <Menu size={18} />
-              ) : (
-                mobileOpen ? <X size={18} /> : <Menu size={18} />
-              )}
-            </button>
+                }}
+                aria-label={t.menu}
+              >
+                {sidebarMobileOpen ? <X size={18} /> : <Menu size={18} />}
+              </button>
+            )}
           </div>
         </div>
       </nav>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && !isAuth && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t bg-background"
-          >
-            <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="px-4 py-2.5 rounded-lg hover:bg-secondary text-sm font-medium transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </header>
   );
 }

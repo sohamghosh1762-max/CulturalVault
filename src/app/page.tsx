@@ -22,6 +22,18 @@ const itemVariants = {
 };
 
 export default function LandingPage() {
+  const [isAuth, setIsAuth] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+    setIsAuth(!!localStorage.getItem("user_token"));
+  }, []);
+
+  const signupHref = mounted && isAuth ? "/dashboard" : "/signup";
+  const signupText = mounted && isAuth ? "Go to Dashboard" : "Join the Registry";
+  const exploreHref = mounted && isAuth ? "/explore" : "/signin";
+
   return (
     <main className="min-h-[calc(100vh-4rem)] bg-background relative overflow-hidden flex flex-col justify-center items-center">
       {/* Immersive background image with glassy gradient overlays */}
@@ -35,10 +47,10 @@ export default function LandingPage() {
           src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=2000&q=80" 
           alt="Landing Background" 
           fill 
-          className="object-cover opacity-25 mix-blend-luminosity duration-[20s] hover:scale-110 transition-transform"
+          className="object-cover opacity-40 duration-[20s] hover:scale-105 transition-transform"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/40 to-background z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/50 to-background z-10" />
       </motion.div>
 
       <motion.div 
@@ -47,14 +59,8 @@ export default function LandingPage() {
         animate="visible"
         className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 flex flex-col items-center text-center"
       >
-        <motion.div variants={itemVariants} className="inline-block mb-6 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-md">
-          <p className="text-secondary-foreground text-sm font-semibold tracking-wider uppercase">
-            World Heritage Explorer
-          </p>
-        </motion.div>
-        
-        <motion.h1 variants={itemVariants} className="text-5xl sm:text-7xl font-extrabold tracking-tight text-foreground mb-8">
-          Preserve the <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">World's Heritage</span>
+        <motion.h1 variants={itemVariants} className="font-display text-5xl sm:text-7xl font-bold tracking-tight text-foreground mb-8">
+          Preserve the <span className="text-primary">World's Heritage</span>
         </motion.h1>
         
         <motion.p variants={itemVariants} className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mb-12 leading-relaxed">
@@ -63,14 +69,14 @@ export default function LandingPage() {
 
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
           <Link 
-            href="/signup" 
-            className="px-10 py-4 bg-primary text-primary-foreground font-semibold rounded-2xl hover:bg-primary/90 transition-all shadow-[0_0_40px_-10px_rgba(245,158,11,0.5)] hover:shadow-[0_0_60px_-15px_rgba(245,158,11,0.7)] hover:-translate-y-1"
+            href={signupHref} 
+            className="px-10 py-4 bg-primary text-primary-foreground font-semibold rounded-2xl hover:bg-primary/90 transition-all hover:-translate-y-1 shadow-md hover:shadow-lg text-center"
           >
-            Join the Registry
+            {signupText}
           </Link>
           <Link 
-            href="/explore" 
-            className="px-10 py-4 glass text-foreground font-semibold rounded-2xl hover:bg-white/10 transition-all border border-white/10 hover:-translate-y-1"
+            href={exploreHref} 
+            className="px-10 py-4 bg-secondary/40 border border-border/80 text-foreground font-semibold rounded-2xl hover:bg-secondary/60 transition-all hover:-translate-y-1 shadow-sm text-center"
           >
             Explore Library
           </Link>

@@ -38,7 +38,7 @@ export function Sidebar() {
   const coreLinks = [
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/explore", label: "Explore", icon: Compass },
-    { href: "/chatbot", label: "AI Chat", icon: MessageSquare },
+    { href: "/chat", label: "AI Chat", icon: MessageSquare },
     { href: "/profile", label: "Profile", icon: User },
   ];
 
