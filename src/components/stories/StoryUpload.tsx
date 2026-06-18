@@ -62,17 +62,23 @@ const [story, setStory] = useState({
       localStorage.getItem("stories") || "[]"
     );
 
+    const currentUser = JSON.parse(
+  localStorage.getItem("userAccount") || "{}"
+);
+
     if (editingId) {
       const updatedStories = stories.map(
         (item: any) =>
           item.id === editingId
             ? {
-                ...story,
-                id: editingId,
-                score: Number(story.score),
-                lat: Number(story.lat),
-                lng: Number(story.lng),
-              }
+  ...story,
+  id: editingId,
+  userId: currentUser.id,
+  userName: currentUser.name,
+  score: Number(story.score),
+  lat: Number(story.lat),
+  lng: Number(story.lng),
+}
             : item
       );
 
@@ -97,19 +103,22 @@ const [story, setStory] = useState({
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    title: story.title,
-    region: story.region,
-    language: story.language,
-    narrator: story.narrator,
-    category: story.category,
-    score: Number(story.score),
-    lat: Number(story.lat),
-    lng: Number(story.lng),
-    description: story.description,
-    audio: story.audio,
-    image: story.image,
-    gallery: story.gallery,
-  }),
+  userId: currentUser.id,
+  userName: currentUser.name,
+
+  title: story.title,
+  region: story.region,
+  language: story.language,
+  narrator: story.narrator,
+  category: story.category,
+  score: Number(story.score),
+  lat: Number(story.lat),
+  lng: Number(story.lng),
+  description: story.description,
+  audio: story.audio,
+  image: story.image,
+  gallery: story.gallery,
+}),
 });
 
 if (!response.ok) {

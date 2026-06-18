@@ -27,7 +27,23 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    const story = await Story.create(body);
+    const story = await Story.create({
+  userId: body.userId,
+  userName: body.userName,
+
+  title: body.title,
+  region: body.region,
+  language: body.language,
+  narrator: body.narrator,
+  category: body.category,
+  score: body.score,
+  lat: body.lat,
+  lng: body.lng,
+  description: body.description,
+  audio: body.audio,
+  image: body.image,
+  gallery: body.gallery,
+});
 
     return NextResponse.json(story);
   } catch (error) {

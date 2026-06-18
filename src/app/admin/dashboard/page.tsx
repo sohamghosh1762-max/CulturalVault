@@ -30,6 +30,18 @@ export default function AdminDashboard() {
 
   const [sites, setSites] = useState<any[]>([]);
 
+  const [articles, setArticles] =
+  useState<any[]>([]);
+
+  const [newArticle, setNewArticle] =
+  useState({
+    title: "",
+    category: "",
+    excerpt: "",
+    content: "",
+    image: "",
+  });
+
   const [newSite, setNewSite] = useState({
   name: "",
   country: "",
@@ -63,8 +75,19 @@ export default function AdminDashboard() {
     if (storedSites) {
       setSites(JSON.parse(storedSites));
     }
+    const storedArticles =
+  localStorage.getItem(
+    "adminArticles"
+  );
+
+if (storedArticles) {
+  setArticles(
+    JSON.parse(storedArticles)
+  );
+}
   }, [router]);
 
+  
   const handleLogout = () => {
     localStorage.removeItem("adminLoggedIn");
     router.push("/admin/login");
@@ -135,6 +158,48 @@ const handleEditSite = (site: any) => {
   lng: "",
 });
   };
+
+  const handlePublishArticle = () => {
+  if (
+    !newArticle.title ||
+    !newArticle.content
+  ) {
+    alert(
+      "Please complete article details"
+    );
+    return;
+  }
+
+  const article = {
+    id: Date.now(),
+    ...newArticle,
+    author: adminName,
+    createdAt:
+      new Date().toLocaleDateString(),
+  };
+
+  const updatedArticles = [
+    article,
+    ...articles,
+  ];
+
+  setArticles(updatedArticles);
+
+  localStorage.setItem(
+    "adminArticles",
+    JSON.stringify(updatedArticles)
+  );
+
+  setNewArticle({
+    title: "",
+    category: "",
+    excerpt: "",
+    content: "",
+    image: "",
+  });
+
+  alert("Article Published");
+};
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
@@ -429,6 +494,8 @@ const handleEditSite = (site: any) => {
     handleAddSite();
   }
 }}
+
+
           className="bg-primary text-white px-5 py-3 rounded-xl hover:opacity-90"
         >
           {editingId
@@ -492,6 +559,100 @@ const handleEditSite = (site: any) => {
 ))}
         </div>
       </div>
+
+      <div className="border rounded-2xl p-6 bg-card mt-10">
+
+  <h2 className="text-3xl font-bold mb-4">
+    📰 Articles Uploaded By Admin
+  </h2>
+
+  <input
+    placeholder="Article Title"
+    value={newArticle.title}
+    onChange={(e)=>
+      setNewArticle({
+        ...newArticle,
+        title:e.target.value
+      })
+    }
+    className="border rounded-xl p-3 w-full mb-4"
+  />
+
+  <input
+    placeholder="Category"
+    value={newArticle.category}
+    onChange={(e)=>
+      setNewArticle({
+        ...newArticle,
+        category:e.target.value
+      })
+    }
+    className="border rounded-xl p-3 w-full mb-4"
+  />
+
+  <input
+    placeholder="Short Description"
+    value={newArticle.excerpt}
+    onChange={(e)=>
+      setNewArticle({
+        ...newArticle,
+        excerpt:e.target.value
+      })
+    }
+    className="border rounded-xl p-3 w-full mb-4"
+  />
+
+  <textarea
+    placeholder="Full Article"
+    value={newArticle.content}
+    onChange={(e)=>
+      setNewArticle({
+        ...newArticle,
+        content:e.target.value
+      })
+    }
+    className="border rounded-xl p-3 w-full min-h-[200px]"
+  />
+
+  <button
+    onClick={handlePublishArticle}
+    className="mt-4 bg-orange-500 text-white px-6 py-3 rounded-xl"
+  >
+     Publish Article
+  </button>
+
+</div>
+
+<div className="mt-8">
+
+  <h2 className="text-2xl font-bold mb-4">
+    Published Articles
+  </h2>
+
+  {articles.map((article) => (
+
+    <div
+      key={article.id}
+      className="border rounded-2xl p-5 mb-4"
+    >
+      <h3 className="text-xl font-bold">
+        {article.title}
+      </h3>
+
+      <p className="text-muted-foreground">
+        By {article.author}
+      </p>
+
+      <p className="mt-2">
+        {article.excerpt}
+      </p>
+
+    </div>
+
+  ))}
+
+</div>
+
     </div>
   );
 }
