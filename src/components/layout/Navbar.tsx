@@ -19,6 +19,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const pathname = usePathname();
   const { language } = useLanguage();
   const t = translations[language];
@@ -27,7 +28,8 @@ export function Navbar() {
 
   useEffect(() => { 
     setMounted(true); 
-    setIsAuth(!!localStorage.getItem("user_token"));
+    setIsAuth(!!localStorage.getItem("user_token") || !!localStorage.getItem("adminLoggedIn"));
+    setIsAdmin(!!localStorage.getItem("adminLoggedIn"));
   }, [pathname]);
 
   useEffect(() => {
@@ -123,6 +125,14 @@ export function Navbar() {
             
             {mounted && isAuth ? (
               <div className="flex items-center gap-2">
+                {isAdmin && (
+                  <Link
+                    href="/admin/dashboard"
+                    className="text-sm font-medium text-amber-500 hover:underline px-2 hidden sm:block border-r border-border pr-3"
+                  >
+                    Admin Dashboard
+                  </Link>
+                )}
                 <Link
                   href="/dashboard"
                   className="text-sm font-medium text-primary hover:underline px-2 hidden sm:block"
@@ -132,10 +142,11 @@ export function Navbar() {
                 <button
                   onClick={() => {
                     localStorage.removeItem("user_token");
+                    localStorage.removeItem("adminLoggedIn");
                     setIsAuth(false);
                     window.location.href = "/";
                   }}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground px-2"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground px-2 ml-1"
                 >
                   {t.logout}
                 </button>

@@ -7,10 +7,19 @@ import {
   Users,
   LogOut,
   UserCircle,
+  LayoutDashboard,
+  Compass,
+  MessageSquare,
+  User,
+  Bookmark,
+  ShieldAlert,
+  ScrollText,
+  Mic,
 } from "lucide-react";
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -225,6 +234,51 @@ const handleEditSite = (site: any) => {
               ).length
             }
           </p>
+        </div>
+      </div>
+
+      {/* User Features Quick Access Panel */}
+      <div className="border rounded-2xl p-6 mb-10 bg-card/60 backdrop-blur-md shadow-lg">
+        <h2 className="text-2xl font-bold mb-2 flex items-center gap-2 text-foreground">
+          <Compass className="text-primary" size={24} />
+          User Features & Explorer Panel
+        </h2>
+        <p className="text-muted-foreground mb-6 text-sm">
+          Quickly navigate to standard explorer pages and user-facing features.
+        </p>
+        
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { label: "Dashboard", desc: "View explorer stats & suggestions", href: "/dashboard", icon: LayoutDashboard, color: "text-amber-500 bg-amber-500/10 hover:bg-amber-500/20" },
+            { label: "Explore Library", desc: "Browse cultural heritage registry", href: "/explore", icon: Compass, color: "text-blue-500 bg-blue-500/10 hover:bg-blue-500/20" },
+            { label: "AI Chat Support", desc: "Ask questions to AI guide", href: "/chat", icon: MessageSquare, color: "text-green-500 bg-green-500/10 hover:bg-green-500/20" },
+            { label: "User Profile", desc: "Manage your user profile", href: "/profile", icon: User, color: "text-purple-500 bg-purple-500/10 hover:bg-purple-500/20" },
+            { label: "Bookmarks", desc: "Access saved cultural items", href: "/bookmarks", icon: Bookmark, color: "text-pink-500 bg-pink-500/10 hover:bg-pink-500/20" },
+            { label: "Risk Dashboard", desc: "Monitor heritage status", href: "/risk-map", icon: ShieldAlert, color: "text-red-500 bg-red-500/10 hover:bg-red-500/20" },
+            { label: "Stories", desc: "Read heritage articles", href: "/stories", icon: ScrollText, color: "text-indigo-500 bg-indigo-500/10 hover:bg-indigo-500/20" },
+            { label: "Oral Story", desc: "Record oral history stories", href: "/oral-story", icon: Mic, color: "text-teal-500 bg-teal-500/10 hover:bg-teal-500/20" },
+          ].map((feat, index) => {
+            const Icon = feat.icon;
+            return (
+              <Link 
+                key={index}
+                href={feat.href}
+                className="flex items-start gap-4 p-4 rounded-xl border border-border bg-background/50 hover:bg-secondary/40 hover:border-primary/50 transition-all duration-300 group shadow-sm hover:shadow"
+              >
+                <div className={`p-2.5 rounded-lg ${feat.color} shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                  <Icon size={20} />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors duration-200">
+                    {feat.label}
+                  </h4>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                    {feat.desc}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
 

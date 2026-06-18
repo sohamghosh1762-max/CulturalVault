@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,7 +15,8 @@ import {
   User,
   Bookmark,
   LogOut,
-  Globe
+  Globe,
+  Shield
 } from "lucide-react";
 import { useSidebar } from "@/context/SidebarContext";
 import { cn } from "@/utils";
@@ -22,6 +24,11 @@ import { cn } from "@/utils";
 export function Sidebar() {
   const { collapsed, setCollapsed, mobileOpen, setMobileOpen } = useSidebar();
   const pathname = usePathname();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    setIsAdmin(!!localStorage.getItem("adminLoggedIn"));
+  }, [pathname]);
 
   // HIDE SIDEBAR ON THE FRONT PAGE & AUTH PAGES
   if (
@@ -34,15 +41,25 @@ export function Sidebar() {
   )
     return null;
 
-  // 1. Core Links (Visible in Collapsed View & Top of Expanded View)
-  const coreLinks = [
+  // 1. Admin Links (Only visible to admin)
+  const adminLinks = [
+    { href: "/admin/dashboard", label: "Admin Dashboard", icon: Shield },
+  ];
+
+  // 2. Core User Links
+  const userCoreLinks = [
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/explore", label: "Explore", icon: Compass },
     { href: "/chat", label: "AI Chat", icon: MessageSquare },
     { href: "/profile", label: "Profile", icon: User },
   ];
 
-  // 2. Extra Links (Shown in Expanded View under "Overall Features")
+  // Combined for Collapsed View
+  const coreLinks = isAdmin
+    ? [...adminLinks, ...userCoreLinks]
+    : userCoreLinks;
+
+  // 3. Extra Links (Shown in Expanded View under "Overall Features")
   const extraLinks = [
     { href: "/bookmarks", label: "Bookmarks", icon: Bookmark },
     { href: "/risk-map", label: "Risk Dashboard", icon: ShieldAlert },
@@ -129,7 +146,23 @@ export function Sidebar() {
           ) : (
             // Expanded/Mobile View
             <>
-              {coreLinks.map(renderExpandedLink)}
+              {isAdmin && (
+                <>
+                  <div className="px-3 mb-1.5 flex items-center gap-1.5">
+                    <span className="text-[11px] font-bold tracking-wider text-primary uppercase flex items-center gap-1">
+                      <Shield size={12} /> Admin Panel
+                    </span>
+                  </div>
+                  {adminLinks.map(renderExpandedLink)}
+                  <div className="my-3 border-t border-border/50" />
+                  <div className="px-3 mb-1.5">
+                    <span className="text-[11px] font-bold tracking-wider text-muted-foreground uppercase">
+                      User Features
+                    </span>
+                  </div>
+                </>
+              )}
+              {userCoreLinks.map(renderExpandedLink)}
               
               <div className="my-3 border-t border-border/50" />
               
@@ -148,6 +181,7 @@ export function Sidebar() {
               <button
                 onClick={() => {
                   localStorage.removeItem("user_token");
+                  localStorage.removeItem("adminLoggedIn");
                   window.location.href = "/";
                 }}
                 className="flex items-center gap-4 px-3 py-2.5 rounded-xl transition-all duration-200 text-red-500 hover:bg-red-500/10 font-medium whitespace-nowrap mb-2 animate-fade-in"

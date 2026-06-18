@@ -17,10 +17,10 @@ export function SidebarWrapper({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    setIsAuth(!!localStorage.getItem("user_token"));
+    setIsAuth(!!localStorage.getItem("user_token") || !!localStorage.getItem("adminLoggedIn"));
   }, [pathname]);
 
-  const showSidebar = mounted && isAuth && !pathname.startsWith("/admin") && !HIDDEN_PATHS.includes(pathname);
+  const showSidebar = mounted && isAuth && !HIDDEN_PATHS.includes(pathname);
 
   return (
     <div className="flex min-h-screen w-full">
