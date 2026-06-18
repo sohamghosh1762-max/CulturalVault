@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     try {
       const { text } = await generateText({
         model: google("gemini-2.5-flash"), // ✅ FIXED
-        system: `You are CareBot+, a medical assistant.
+        system: `You are CulturalVault, a medical assistant.
 - Keep answers medium/shortly
 - Suggest general medicine only
 - Always advise doctor consultation`,
