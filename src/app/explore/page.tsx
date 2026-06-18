@@ -22,6 +22,7 @@ const DEFAULT_FILTERS: FilterState = {
   category: "All",
   sortBy: "newest",
   era: "All Eras",
+  contentType: "All",
 };
 
 export default function HomePage() {

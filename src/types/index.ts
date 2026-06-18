@@ -3,18 +3,32 @@ export interface CulturalItem {
   title: string;
   description: string;
   longDescription: string;
+
   category: Category;
+
   tags: string[];
+
   imageUrl: string;
   location: string;
   era: string;
+
   rating: number;
   reviewCount: number;
+
   featured: boolean;
   createdAt: string;
+
   artifacts: Artifact[];
   curator: Curator;
+
+  // Content Type
+  contentType?: ContentType;
 }
+
+export type ContentType =
+  | "Culture"
+  | "Stories"
+  | "Articles";
 
 export interface Artifact {
   id: string;
@@ -31,6 +45,8 @@ export interface Curator {
 }
 
 export type Category =
+  | "Stories"
+  | "Articles"
   | "Architecture"
   | "Art"
   | "Music"
@@ -42,12 +58,27 @@ export type Category =
 
 export interface FilterState {
   search: string;
-  category: Category | "All";
+
+  category:
+    | Category
+    | "All";
+
   sortBy: SortOption;
+
   era: string;
+
+  contentType:
+    | "All"
+    | "Culture"
+    | "Stories"
+    | "Articles";
 }
 
-export type SortOption = "newest" | "oldest" | "rating" | "title";
+export type SortOption =
+  | "newest"
+  | "oldest"
+  | "rating"
+  | "title";
 
 export interface PaginationState {
   page: number;

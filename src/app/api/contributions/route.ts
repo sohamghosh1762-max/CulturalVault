@@ -28,7 +28,7 @@ export async function GET() {
       contributions
     );
   } catch (error) {
-    console.error(error);
+    console.error("Mongo Error:", error);
 
     return NextResponse.json(
       {
