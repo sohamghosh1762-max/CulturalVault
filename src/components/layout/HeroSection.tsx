@@ -54,6 +54,14 @@ export function HeroSection() {
             >
              {t.myCollection}
             </a>
+
+            <a
+    href="/community-gallery"
+    className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-xl font-medium hover:bg-orange-600 transition-all hover:scale-105 shadow-lg shadow-orange-500/25"
+  >
+    🏛 Community Gallery
+  </a>
+  
           </div>
         </motion.div>
 
@@ -80,3 +88,4 @@ export function HeroSection() {
     </section>
   );
 }
+

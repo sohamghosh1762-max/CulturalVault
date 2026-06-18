@@ -6,17 +6,16 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Compass,
-  ShieldAlert,
+  Shield,
+  Users,
   X,
-  ScrollText,
+  Upload,
   LayoutDashboard,
   MessageSquare,
-  Mic,
   User,
   Bookmark,
   LogOut,
-  Globe,
-  Shield
+  Globe
 } from "lucide-react";
 import { useSidebar } from "@/context/SidebarContext";
 import { cn } from "@/utils";
@@ -62,9 +61,9 @@ export function Sidebar() {
   // 3. Extra Links (Shown in Expanded View under "Overall Features")
   const extraLinks = [
     { href: "/bookmarks", label: "Bookmarks", icon: Bookmark },
-    { href: "/risk-map", label: "Risk Dashboard", icon: ShieldAlert },
-    { href: "/stories", label: "Stories", icon: ScrollText },
-    { href: "/oral-story", label: "Oral Story", icon: Mic },
+    { href: "/risk-map", label: "Risk Dashboard", icon: Shield },
+    { href: "/upload-center", label: "Upload Center", icon: Upload },
+    { href: "/contribute", label: "Community", icon: Users }
   ];
 
   const SidebarContent = ({ isMobile = false }: { isMobile?: boolean }) => {
