@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import StoryUpload from "@/components/stories/StoryUpload";
 import StoryList from "@/components/stories/StoryList";
 
 export default function StoriesPage() {
+  const [editingStory, setEditingStory] = useState<any>(null);
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
       {/* Header */}
@@ -21,12 +24,12 @@ export default function StoriesPage() {
 
       {/* Upload Section */}
       <div className="mb-12">
-        <StoryUpload />
+        <StoryUpload editingStory={editingStory} setEditingStory={setEditingStory} />
       </div>
 
       {/* Stories Section */}
       <div>
-        <StoryList />
+        <StoryList onEditStory={setEditingStory} />
       </div>
     </div>
   );

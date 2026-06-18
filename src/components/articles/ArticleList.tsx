@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 
-export default function ArticleList() {
+export default function ArticleList({
+  onEditArticle,
+}: {
+  onEditArticle: (article: any) => void;
+}) {
   const [articles, setArticles] = useState<any[]>([]);
 
   const loadArticles = () => {
@@ -54,19 +58,14 @@ export default function ArticleList() {
   };
 
   const editArticle = (article: any) => {
-    localStorage.setItem(
-      "editArticle",
-      JSON.stringify(article)
-    );
-
-    window.location.reload();
+    onEditArticle(article);
   };
 
   return (
     <div className="mt-12">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold">
-          Published Articles
+          Uploaded Blog Section
         </h2>
 
         <span className="text-muted-foreground">

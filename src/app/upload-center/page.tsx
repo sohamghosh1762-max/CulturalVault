@@ -21,21 +21,21 @@ export default function UploadCenterPage() {
     setStoryCount(stories.length);
     setArticleCount(articles.length);
 
-    const languages = [
-      ...new Set(
+    const languages = Array.from(
+      new Set(
         stories
           .map((story: any) => story.language)
           .filter(Boolean)
-      ),
-    ];
+      )
+    );
 
-    const regions = [
-      ...new Set(
+    const regions = Array.from(
+      new Set(
         stories
           .map((story: any) => story.region)
           .filter(Boolean)
-      ),
-    ];
+      )
+    );
 
     setLanguageCount(languages.length);
     setRegionCount(regions.length);

@@ -33,23 +33,30 @@ export default function CommunityDetailsPage() {
         const data =
           await res.json();
 
+        const dataArray = Array.isArray(data) ? data : [];
+
         const selected =
-          data.find(
+          dataArray.find(
             (contribution: any) =>
               contribution._id ===
               params.id
           );
 
+        if (!selected) {
+          setItem(null);
+          return;
+        }
+
         setItem(selected);
         await fetch(
-  `/api/contributions/${selected._id}/view`,
-  {
-    method: "PATCH",
-  }
-);
+          `/api/contributions/${selected._id}/view`,
+          {
+            method: "PATCH",
+          }
+        );
 
-selected.views =
-  (selected.views || 0) + 1;
+        selected.views =
+          (selected.views || 0) + 1;
       } catch (error) {
         console.error(error);
       } finally {

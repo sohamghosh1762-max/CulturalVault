@@ -11,6 +11,7 @@ export function useRiskSites() {
       try {
         const res = await fetch("/api/risk-sites");
         const apiSites = await res.json();
+        const apiSitesArray = Array.isArray(apiSites) ? apiSites : [];
 
         const localSites = JSON.parse(
           localStorage.getItem("heritageSites") || "[]"
@@ -32,7 +33,7 @@ export function useRiskSites() {
 );
 
         setSites([
-          ...apiSites,
+          ...apiSitesArray,
           ...formattedLocalSites,
         ]);
       } catch (error) {

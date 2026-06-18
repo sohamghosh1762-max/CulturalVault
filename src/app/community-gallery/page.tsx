@@ -22,9 +22,10 @@ export default function CommunityGalleryPage() {
 
       const data = await res.json();
 
-      setGallery(data);
+      setGallery(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error(error);
+      setGallery([]);
     } finally {
       setLoading(false);
     }
@@ -38,7 +39,7 @@ export default function CommunityGalleryPage() {
     );
   }
 
-  const filteredGallery = gallery.filter((item) => {
+  const filteredGallery = Array.isArray(gallery) ? gallery.filter((item) => {
   const matchesSearch =
     item.title
       ?.toLowerCase()
@@ -52,10 +53,10 @@ export default function CommunityGalleryPage() {
     item.category === category;
 
   return matchesSearch && matchesCategory;
-});
+}) : [];
 
 const featuredItem =
-  gallery.length > 0 ? gallery[0] : null;
+  Array.isArray(gallery) && gallery.length > 0 ? gallery[0] : null;
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
@@ -143,11 +144,11 @@ const featuredItem =
   >
     <option>All</option>
 
-    {[...new Set(
+    {Array.from(new Set(
       gallery.map(
         (item) => item.category
       )
-    )].map((cat) => (
+    )).map((cat) => (
       <option key={cat}>
         {cat}
       </option>

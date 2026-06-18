@@ -9,7 +9,7 @@ export default function StoryCard({
 }: {
   story: any;
   onEdit?: (story: any) => void;
-  onDelete?: (id: number) => void;
+  onDelete?: (id: any) => void;
 }) {
   const currentUser = JSON.parse(
     localStorage.getItem("userAccount") || "{}"

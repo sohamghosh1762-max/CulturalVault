@@ -2,50 +2,66 @@
 
 import { useEffect, useState } from "react";
 
-export default function StoryUpload() {
+export default function StoryUpload({
+  editingStory,
+  setEditingStory,
+}: {
+  editingStory: any;
+  setEditingStory: (story: any) => void;
+}) {
   const [editingId, setEditingId] =
-    useState<number | null>(null);
+    useState<string | null>(null);
 
-const [story, setStory] = useState({
-  title: "",
-  region: "",
-  language: "",
-  narrator: "",
-  category: "",
-  score: "",
-  lat: "",
-  lng: "",
-  description: "",
-  audio: "",
-  image: "",
-  gallery: [],
-});
+  const [story, setStory] = useState({
+    title: "",
+    region: "",
+    language: "",
+    narrator: "",
+    category: "",
+    score: "",
+    lat: "",
+    lng: "",
+    description: "",
+    audio: "",
+    image: "",
+    gallery: [],
+  });
 
   useEffect(() => {
-    const editStory =
-      localStorage.getItem("editStory");
-
-    if (editStory) {
-      const storyData = JSON.parse(editStory);
-
+    if (editingStory) {
       setStory({
-        title: storyData.title || "",
-        region: storyData.region || "",
-        language: storyData.language || "",
-        narrator: storyData.narrator || "",
-        category: storyData.category || "",
-        score: String(storyData.score || ""),
-        lat: String(storyData.lat || ""),
-        lng: String(storyData.lng || ""),
-        description: storyData.description || "",
-        audio: storyData.audio || "",
-        image: storyData.image || "",
-        gallery: storyData.gallery || [],
+        title: editingStory.title || "",
+        region: editingStory.region || "",
+        language: editingStory.language || "",
+        narrator: editingStory.narrator || "",
+        category: editingStory.category || "",
+        score: String(editingStory.score || ""),
+        lat: String(editingStory.lat || ""),
+        lng: String(editingStory.lng || ""),
+        description: editingStory.description || "",
+        audio: editingStory.audio || "",
+        image: editingStory.image || "",
+        gallery: editingStory.gallery || [],
       });
-
-      setEditingId(storyData.id);
+      setEditingId(editingStory._id || editingStory.id || null);
+    } else {
+      setStory({
+        title: "",
+        region: "",
+        language: "",
+        narrator: "",
+        category: "",
+        score: "",
+        lat: "",
+        lng: "",
+        description: "",
+        audio: "",
+        image: "",
+        gallery: [],
+      });
+      setEditingId(null);
     }
-  }, []);
+  }, [editingStory]);
 
   const saveStory = async () => {
     if (
@@ -58,94 +74,99 @@ const [story, setStory] = useState({
       return;
     }
 
-    const stories = JSON.parse(
-      localStorage.getItem("stories") || "[]"
+    const currentUser = JSON.parse(
+      localStorage.getItem("userAccount") || "{}"
     );
 
-    const currentUser = JSON.parse(
-  localStorage.getItem("userAccount") || "{}"
-);
-
     if (editingId) {
-      const updatedStories = stories.map(
-        (item: any) =>
-          item.id === editingId
-            ? {
-  ...story,
-  id: editingId,
-  userId: currentUser.id,
-  userName: currentUser.name,
-  score: Number(story.score),
-  lat: Number(story.lat),
-  lng: Number(story.lng),
-}
-            : item
-      );
+      try {
+        const response = await fetch(`/api/stories/${editingId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: story.title,
+            region: story.region,
+            language: story.language,
+            narrator: story.narrator,
+            category: story.category,
+            score: Number(story.score),
+            lat: Number(story.lat),
+            lng: Number(story.lng),
+            description: story.description,
+            audio: story.audio,
+            image: story.image,
+            gallery: story.gallery,
+          }),
+        });
 
-      localStorage.setItem(
-        "stories",
-        JSON.stringify(updatedStories)
-      );
+        if (!response.ok) {
+          alert("Failed to update story");
+          return;
+        }
 
-      localStorage.removeItem("editStory");
+        window.dispatchEvent(
+          new Event("storiesUpdated")
+        );
 
-      alert("Story Updated Successfully!");
-
-      window.location.reload();
+        alert("Story Updated Successfully!");
+        setEditingStory(null);
+      } catch (error) {
+        console.error(error);
+        alert("Failed to update story");
+      }
       return;
     }
 
-    console.log("Story Data:", story);
-    console.log("Gallery Images:", story.gallery);
     const response = await fetch("/api/stories", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-  userId: currentUser.id,
-  userName: currentUser.name,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: currentUser.id,
+        userName: currentUser.name,
+        title: story.title,
+        region: story.region,
+        language: story.language,
+        narrator: story.narrator,
+        category: story.category,
+        score: Number(story.score),
+        lat: Number(story.lat),
+        lng: Number(story.lng),
+        description: story.description,
+        audio: story.audio,
+        image: story.image,
+        gallery: story.gallery,
+      }),
+    });
 
-  title: story.title,
-  region: story.region,
-  language: story.language,
-  narrator: story.narrator,
-  category: story.category,
-  score: Number(story.score),
-  lat: Number(story.lat),
-  lng: Number(story.lng),
-  description: story.description,
-  audio: story.audio,
-  image: story.image,
-  gallery: story.gallery,
-}),
-});
-
-if (!response.ok) {
-  alert("Failed to save story");
-  return;
-}
+    if (!response.ok) {
+      alert("Failed to save story");
+      return;
+    }
 
     window.dispatchEvent(
-  new Event("storiesUpdated")
-);
+      new Event("storiesUpdated")
+    );
 
     alert("Story Saved Successfully!");
 
     setStory({
-  title: "",
-  region: "",
-  language: "",
-  narrator: "",
-  category: "",
-  score: "",
-  lat: "",
-  lng: "",
-  description: "",
-  audio: "",
-  image: "",
-  gallery: [],
-});
+      title: "",
+      region: "",
+      language: "",
+      narrator: "",
+      category: "",
+      score: "",
+      lat: "",
+      lng: "",
+      description: "",
+      audio: "",
+      image: "",
+      gallery: [],
+    });
   };
 
   return (
@@ -364,14 +385,22 @@ if (!response.ok) {
         rows={12}
       />
 
-      <button
-        onClick={saveStory}
-        className="mt-5 bg-primary text-white px-6 py-3 rounded-xl hover:opacity-90"
-      >
-        {editingId
-          ? "Update Story"
-          : "Save Story"}
-      </button>
+      <div className="flex gap-4 mt-5">
+        <button
+          onClick={saveStory}
+          className="bg-primary text-white px-6 py-3 rounded-xl hover:opacity-90 transition-all font-semibold"
+        >
+          {editingId ? "Update Story" : "Save Story"}
+        </button>
+        {editingId && (
+          <button
+            onClick={() => setEditingStory(null)}
+            className="bg-secondary text-foreground border border-border px-6 py-3 rounded-xl hover:bg-secondary/80 transition-all font-semibold"
+          >
+            Cancel Edit
+          </button>
+        )}
+      </div>
     </div>
   );
 }

@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-export default function ArticleUpload() {
+export default function ArticleUpload({
+  editingArticle,
+  setEditingArticle,
+}: {
+  editingArticle: any;
+  setEditingArticle: (article: any) => void;
+}) {
   const [article, setArticle] = useState({
     id: null as number | null,
     title: "",
@@ -16,13 +22,32 @@ export default function ArticleUpload() {
   });
 
   useEffect(() => {
-    const editArticle =
-      localStorage.getItem("editArticle");
-
-    if (editArticle) {
-      setArticle(JSON.parse(editArticle));
+    if (editingArticle) {
+      setArticle({
+        id: editingArticle.id || null,
+        title: editingArticle.title || "",
+        category: editingArticle.category || "",
+        region: editingArticle.region || "",
+        threat: editingArticle.threat || "Safe",
+        score: String(editingArticle.score || ""),
+        image: editingArticle.image || "",
+        shortDescription: editingArticle.shortDescription || "",
+        content: editingArticle.content || "",
+      });
+    } else {
+      setArticle({
+        id: null,
+        title: "",
+        category: "",
+        region: "",
+        threat: "Safe",
+        score: "",
+        image: "",
+        shortDescription: "",
+        content: "",
+      });
     }
-  }, []);
+  }, [editingArticle]);
 
   const saveArticle = () => {
     if (
@@ -49,15 +74,12 @@ export default function ArticleUpload() {
         JSON.stringify(updatedArticles)
       );
 
-      localStorage.removeItem(
-        "editArticle"
-      );
-
       window.dispatchEvent(
         new Event("articlesUpdated")
       );
 
       alert("Article Updated Successfully");
+      setEditingArticle(null);
     } else {
       articles.push({
         ...article,
@@ -160,31 +182,51 @@ export default function ArticleUpload() {
           className="border rounded-xl p-3"
         />
 
-        <input
-          type="file"
-          accept="image/*"
-          className="border rounded-xl p-3"
-          onChange={(e) => {
-            const file =
-              e.target.files?.[0];
+        <div className="flex flex-col gap-2">
+          <input
+            type="file"
+            accept="image/*"
+            className="border rounded-xl p-3 w-full"
+            onChange={(e) => {
+              const file =
+                e.target.files?.[0];
 
-            if (file) {
-              const reader =
-                new FileReader();
+              if (file) {
+                const reader =
+                  new FileReader();
 
-              reader.onload = () => {
-                setArticle((prev) => ({
-                  ...prev,
-                  image:
-                    reader.result as string,
-                }));
-              };
+                reader.onload = () => {
+                  setArticle((prev) => ({
+                    ...prev,
+                    image:
+                      reader.result as string,
+                  }));
+                };
 
-              reader.readAsDataURL(file);
-            }
-          }}
-        />
+                reader.readAsDataURL(file);
+              }
+            }}
+          />
+          {article.image && (
+            <div className="text-xs text-muted-foreground">
+              ✓ Cover image selected
+            </div>
+          )}
+        </div>
       </div>
+
+      {article.image && (
+        <div className="mt-4 p-4 border rounded-2xl bg-muted/30">
+          <p className="text-sm font-semibold mb-2 text-muted-foreground">
+            Blog Cover Preview:
+          </p>
+          <img
+            src={article.image}
+            alt="Cover Preview"
+            className="w-full max-h-60 object-cover rounded-xl border"
+          />
+        </div>
+      )}
 
       <textarea
         placeholder="Short Description"
@@ -213,14 +255,22 @@ export default function ArticleUpload() {
         rows={8}
       />
 
-      <button
-        onClick={saveArticle}
-        className="mt-5 bg-primary text-white px-6 py-3 rounded-xl hover:opacity-90"
-      >
-        {article.id
-          ? "Update Article"
-          : "Publish Article"}
-      </button>
+      <div className="flex gap-4 mt-5">
+        <button
+          onClick={saveArticle}
+          className="bg-primary text-white px-6 py-3 rounded-xl hover:opacity-90 transition-all font-semibold"
+        >
+          {article.id ? "Update Article" : "Publish Article"}
+        </button>
+        {article.id && (
+          <button
+            onClick={() => setEditingArticle(null)}
+            className="bg-secondary text-foreground border border-border px-6 py-3 rounded-xl hover:bg-secondary/80 transition-all font-semibold"
+          >
+            Cancel Edit
+          </button>
+        )}
+      </div>
     </div>
   );
 }

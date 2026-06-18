@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import StoryCard from "./StoryCard";
 
-export default function StoryList() {
+export default function StoryList({
+  onEditStory,
+}: {
+  onEditStory: (story: any) => void;
+}) {
   const [stories, setStories] = useState<any[]>([]);
 
   const loadStories = async () => {
@@ -12,11 +16,29 @@ export default function StoryList() {
 
     const data = await res.json();
 
-    setStories(data);
+    setStories(Array.isArray(data) ? data : []);
   } catch (error) {
     console.error(error);
+    setStories([]);
   }
 };
+
+  const handleDeleteStory = async (id: string) => {
+    try {
+      const res = await fetch(`/api/stories/${id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        alert("Story deleted successfully!");
+        loadStories();
+      } else {
+        alert("Failed to delete story");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error deleting story");
+    }
+  };
 
   useEffect(() => {
     loadStories();
@@ -43,7 +65,7 @@ export default function StoryList() {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-bold">
-          Preserved Stories
+          Uploaded Story Section
         </h2>
 
         <span className="text-muted-foreground">
@@ -65,9 +87,11 @@ export default function StoryList() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {stories.map((story) => (
             <StoryCard
-  key={story._id}
-  story={story}
-/>
+              key={story._id}
+              story={story}
+              onEdit={onEditStory}
+              onDelete={handleDeleteStory}
+            />
           ))}
         </div>
       )}

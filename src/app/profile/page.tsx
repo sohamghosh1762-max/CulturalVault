@@ -52,15 +52,16 @@ export default function ProfilePage() {
       );
 
       const data = await res.json();
+      const dataArray = Array.isArray(data) ? data : [];
 
       console.log("Profile Name:", userName);
 
 console.log(
   "Contributors:",
-  data.map((x:any) => x.contributor)
+  dataArray.map((x:any) => x.contributor)
 );
 
-const userContributions = data.filter(
+const userContributions = dataArray.filter(
   (item: any) =>
     item.contributor?.trim().toLowerCase() ===
     userName?.trim().toLowerCase()

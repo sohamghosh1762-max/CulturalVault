@@ -1,12 +1,17 @@
+"use client";
+
+import { useState } from "react";
 import ArticleUpload from "@/components/articles/ArticleUpload";
 import ArticleList from "@/components/articles/ArticleList";
 
 export default function ArticlesPage() {
+  const [editingArticle, setEditingArticle] = useState<any>(null);
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
-      <ArticleUpload />
+      <ArticleUpload editingArticle={editingArticle} setEditingArticle={setEditingArticle} />
 
-      <ArticleList />
+      <ArticleList onEditArticle={setEditingArticle} />
     </div>
   );
 }

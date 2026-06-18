@@ -33,8 +33,10 @@ export default function StoryDetailsPage() {
         const stories =
           await res.json();
 
+        const storiesArray = Array.isArray(stories) ? stories : [];
+
         const selectedStory =
-          stories.find(
+          storiesArray.find(
             (item: any) =>
               item._id === params.id
           );
