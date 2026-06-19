@@ -304,14 +304,13 @@ const featuredItem =
   </span>
 </div>
 
-              <div className="flex gap-4 mt-3 text-sm">
-                <span>
-                  ❤️ {item.likes || 0}
-                </span>
-
-                <span>
-                  👁 {item.views || 0}
-                </span>
+              <div className="flex flex-wrap items-center justify-between mt-3 text-xs text-muted-foreground border-t border-border/50 pt-3">
+                <span>📅 {item.createdAt ? new Date(item.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now"}</span>
+                <div className="flex items-center gap-3">
+                  <span>👁️ {item.views || 0}</span>
+                  <span>❤️ {item.likes || 0}</span>
+                  <span>💬 {item.commentsCount || 0}</span>
+                </div>
               </div>
 
               {item.tags?.length > 0 && (

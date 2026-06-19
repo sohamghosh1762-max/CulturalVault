@@ -20,7 +20,13 @@ import { Action, Actions } from "@/components/ai-elements/actions";
 import React, { useState, useEffect, useRef, Suspense } from "react";
 import { useChat } from "@ai-sdk/react";
 import { Response } from "@/components/ai-elements/response";
-import { CopyIcon, Mic, MicOff, Plus, MessageSquare, Trash2 } from "lucide-react";
+import { CopyIcon, Mic, MicOff, Plus, MessageSquare, Trash2, BookOpen, X } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Source,
   Sources,
@@ -97,6 +103,10 @@ const AIChatContent = ({ chatId }: { chatId: string }) => {
   const [isRecording, setIsRecording] = useState(false);
   const recognitionRef = useRef<any>(null);
 
+  const [availableStories, setAvailableStories] = useState<any[]>([]);
+  const [availableArticles, setAvailableArticles] = useState<any[]>([]);
+  const [attachedItems, setAttachedItems] = useState<any[]>([]);
+
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -111,6 +121,29 @@ const AIChatContent = ({ chatId }: { chatId: string }) => {
   useEffect(() => {
     setSessionsList(getLocalSessions());
   }, [messages]);
+
+  // Load available stories and articles
+  useEffect(() => {
+    async function fetchSources() {
+      try {
+        const storiesRes = await fetch("/api/stories");
+        if (storiesRes.ok) {
+          const data = await storiesRes.json();
+          setAvailableStories(Array.isArray(data) ? data : []);
+        }
+      } catch (err) {
+        console.error("Failed to load stories for chat context:", err);
+      }
+
+      try {
+        const articles = JSON.parse(localStorage.getItem("articles") || "[]");
+        setAvailableArticles(articles);
+      } catch (err) {
+        console.error("Failed to load articles for chat context:", err);
+      }
+    }
+    fetchSources();
+  }, []);
 
   const { user } = useAuth();
 
@@ -194,10 +227,45 @@ const AIChatContent = ({ chatId }: { chatId: string }) => {
     return "low";
   };
 
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    try {
+      const dataStr = e.dataTransfer.getData("application/json");
+      if (dataStr) {
+        const item = JSON.parse(dataStr);
+        if (item && item.id) {
+          if (!attachedItems.some(i => i.id === item.id)) {
+            setAttachedItems(prev => [...prev, item]);
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Drop parsing failed:", err);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
   const handleSubmit = async (message: PromptInputMessage) => {
-    const value = (message.text ?? input).trim();
-    if (!value && (!message.files || message.files.length === 0)) return;
+    let value = (message.text ?? input).trim();
+    if (!value && (!message.files || message.files.length === 0) && attachedItems.length === 0) return;
     
+    if (attachedItems.length > 0) {
+      let contextStr = "";
+      for (const item of attachedItems) {
+        if (item.type === "story") {
+          contextStr += `\n\n[Context - Attached Story "${item.title}":\nRegion: ${item.region}\nLanguage: ${item.language}\nNarrator: ${item.narrator || "Unknown"}\nCategory: ${item.category || "Stories"}\nDescription: ${item.description}]`;
+        } else if (item.type === "article") {
+          contextStr += `\n\n[Context - Attached Blog "${item.title}":\nCategory: ${item.category || "Articles"}\nRegion: ${item.region || "Global"}\nContent: ${item.content || item.description}]`;
+        } else {
+          contextStr += `\n\n[Context - Attached Cultural Item "${item.title}":\nCategory: ${item.category}\nRegion: ${item.region}\nDescription: ${item.description}]`;
+        }
+      }
+      value += contextStr;
+    }
+
     const parts: any[] = [{ type: 'text', text: value }];
     
     if (message.files && message.files.length > 0) {
@@ -228,12 +296,13 @@ const AIChatContent = ({ chatId }: { chatId: string }) => {
     } catch (e) {}
     
     if (language !== "English") {
-      parts[0].text = `[Important: You must respond in the ${language} language.]\n\n${value || "Hello"}`;
+      parts[0].text = `[Important: You must respond in the ${language} language.]\n\n${parts[0].text || "Hello"}`;
     }
     
     // @ts-ignore
     sendMessage({ role: 'user', parts });
     setInput("");
+    setAttachedItems([]);
     
     // Auto update URL if started new chat without refresh
     if (!queryId) {
@@ -287,7 +356,11 @@ const AIChatContent = ({ chatId }: { chatId: string }) => {
       </div>
 
       {/* Right Column: Active Chat Area */}
-      <div className="flex-1 flex flex-col min-w-0 h-full border border-border bg-card rounded-3xl p-4 relative">
+      <div 
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+        className="flex-1 flex flex-col min-w-0 h-full border border-border bg-card rounded-3xl p-4 relative"
+      >
         <div className="flex items-center justify-between mb-4 bg-white dark:bg-zinc-900 p-3 rounded-xl shadow-sm z-10 shrink-0 border border-border">
           <Select value={language} onValueChange={setLanguage}>
             <SelectTrigger className="w-[180px] h-9 bg-white dark:bg-zinc-800 opacity-100 shadow-sm border-border text-muted-foreground transition-colors">
@@ -408,6 +481,28 @@ const AIChatContent = ({ chatId }: { chatId: string }) => {
           <ConversationScrollButton />
         </Conversation>
 
+        {attachedItems.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-3 p-2 bg-muted/40 rounded-2xl border border-border/50">
+            {attachedItems.map((item) => (
+              <div 
+                key={item.id} 
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-secondary text-secondary-foreground border rounded-full text-xs font-semibold shadow-sm animate-fade-in"
+              >
+                <span>{item.type === "story" ? "🎙️" : item.type === "article" ? "📰" : "🏺"}</span>
+                <span className="truncate max-w-[150px]">{item.title}</span>
+                <button
+                  onClick={() => setAttachedItems(prev => prev.filter(i => i.id !== item.id))}
+                  className="hover:bg-muted-foreground/20 p-0.5 rounded-full transition-colors"
+                  title="Remove context attachment"
+                  type="button"
+                >
+                  <X className="size-3 text-muted-foreground" />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="shrink-0 mt-4">
           <PromptInput onSubmit={handleSubmit} accept="image/*" multiple>
             <PromptInputAttachments>
@@ -420,6 +515,80 @@ const AIChatContent = ({ chatId }: { chatId: string }) => {
             <PromptInputToolbar>
               <PromptInputTools>
                 <PromptInputUploadButton />
+                
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="rounded-lg text-slate-500 hover:text-foreground hover:bg-slate-500/10 transition-colors"
+                      title="Attach Story or Blog"
+                      type="button"
+                    >
+                      <BookOpen className="size-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-64 max-h-72 overflow-y-auto bg-white dark:bg-zinc-800 border border-border shadow-lg z-50">
+                    <div className="p-2 text-xs font-bold text-muted-foreground uppercase border-b border-border/40">
+                      Stories
+                    </div>
+                    {availableStories.length === 0 ? (
+                      <div className="p-2 text-xs text-muted-foreground italic">No stories uploaded</div>
+                    ) : (
+                      availableStories.map(story => (
+                        <DropdownMenuItem
+                          key={story._id || story.id}
+                          onClick={() => {
+                            if (!attachedItems.some(i => i.id === (story._id || story.id))) {
+                              setAttachedItems(prev => [...prev, {
+                                id: story._id || story.id,
+                                title: story.title,
+                                type: "story",
+                                category: story.category || "Stories",
+                                description: story.description,
+                                region: story.region,
+                                language: story.language,
+                                narrator: story.narrator
+                              }]);
+                            }
+                          }}
+                          className="cursor-pointer text-xs"
+                        >
+                          🎙️ {story.title}
+                        </DropdownMenuItem>
+                      ))
+                    )}
+                    <div className="p-2 text-xs font-bold text-muted-foreground uppercase border-b border-border/40 mt-1">
+                      Blogs & Articles
+                    </div>
+                    {availableArticles.length === 0 ? (
+                      <div className="p-2 text-xs text-muted-foreground italic">No articles published</div>
+                    ) : (
+                      availableArticles.map(article => (
+                        <DropdownMenuItem
+                          key={article.id}
+                          onClick={() => {
+                            if (!attachedItems.some(i => i.id === String(article.id))) {
+                              setAttachedItems(prev => [...prev, {
+                                id: String(article.id),
+                                title: article.title,
+                                type: "article",
+                                category: article.category || "Articles",
+                                description: article.shortDescription,
+                                content: article.content,
+                                region: article.region
+                              }]);
+                            }
+                          }}
+                          className="cursor-pointer text-xs"
+                        >
+                          📰 {article.title}
+                        </DropdownMenuItem>
+                      ))
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
                 <Button 
                   variant="ghost" 
                   size="icon" 
@@ -431,7 +600,7 @@ const AIChatContent = ({ chatId }: { chatId: string }) => {
                   {isRecording ? <MicOff className="size-4" /> : <Mic className="size-4" />}
                 </Button>
               </PromptInputTools>
-              <PromptInputSubmit disabled={!input && input.length === 0} status={status} />
+              <PromptInputSubmit disabled={!input && input.length === 0 && attachedItems.length === 0} status={status} />
             </PromptInputToolbar>
           </PromptInput>
         </div>

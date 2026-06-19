@@ -9,10 +9,64 @@ import { useBookmarks } from "@/context/BookmarksContext";
 import { ErrorState } from "@/components/ui/ErrorState";
 import { PageWrapper } from "@/components/layout/PageWrapper";
 import { motion } from "framer-motion";
+import { recordRecentlyViewed } from "@/utils";
 
 export default function ItemDetailPage({ params }: { params: { id: string } }) {
-  const { item, loading, error } = useItem(params.id);
+  const { item, loading, error, likeItem } = useItem(params.id);
   const { isBookmarked } = useBookmarks();
+
+  const [comments, setComments] = useState<any[]>([]);
+  const [newComment, setNewComment] = useState({ name: "", text: "" });
+
+  useEffect(() => {
+    if (item) {
+      recordRecentlyViewed({
+        id: item.id,
+        type: "article",
+        title: item.title,
+        category: item.category,
+        path: `/item/${item.id}`
+      });
+
+      const storedComments = localStorage.getItem(`comments-${item.id}`);
+      if (storedComments) {
+        setComments(JSON.parse(storedComments));
+      } else {
+        const mock = [
+          {
+            name: "Sofia Rossi",
+            text: "This is absolutely beautiful! Thank you for sharing this oral history.",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            name: "Liam O'Connor",
+            text: "Fascinating details. It is so important to preserve these local traditions.",
+            createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
+          }
+        ];
+        localStorage.setItem(`comments-${item.id}`, JSON.stringify(mock));
+        setComments(mock);
+      }
+    }
+  }, [item]);
+
+  const handleAddComment = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!item) return;
+    if (!newComment.name.trim() || !newComment.text.trim()) return;
+
+    const comment = {
+      name: newComment.name.trim(),
+      text: newComment.text.trim(),
+      createdAt: new Date().toISOString()
+    };
+
+    const updated = [comment, ...comments];
+    setComments(updated);
+    localStorage.setItem(`comments-${item.id}`, JSON.stringify(updated));
+
+    setNewComment({ name: "", text: "" });
+  };
 
   if (loading) {
     return (
@@ -66,7 +120,7 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
               </span>
             )}
             <span className="px-3 py-1 bg-primary/20 text-primary backdrop-blur-md rounded-full text-sm font-medium border border-primary/20">
-              {item.category}
+              {item.category === "Articles" ? "Blogs" : item.category}
             </span>
             <span className="px-3 py-1 bg-secondary/80 text-secondary-foreground backdrop-blur-md rounded-full text-sm font-medium">
               {item.era}
@@ -95,6 +149,23 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
             <span className="flex items-center gap-1 text-amber-500">
               ★ <span className="font-medium text-foreground">{item.rating}</span> ({item.reviewCount.toLocaleString()} reviews)
             </span>
+            <span className="flex items-center gap-1.5">
+              👁️ <span className="font-medium text-foreground">{item.views !== undefined ? item.views : Math.floor((item.reviewCount || 0) * 4.5)}</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              ❤️ <span className="font-medium text-foreground">{item.likes !== undefined ? item.likes : Math.floor((item.reviewCount || 0) * 1.2)}</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              💬 <span className="font-medium text-foreground">{comments.length}</span>
+            </span>
+            {item.category === "Articles" && (
+              <button 
+                onClick={likeItem}
+                className="ml-2 px-3.5 py-1 bg-red-500 hover:bg-red-600 text-white rounded-full text-xs font-semibold shadow-md transition-all active:scale-95 flex items-center gap-1"
+              >
+                ❤️ Like Blog
+              </button>
+            )}
           </motion.div>
         </div>
       </section>
@@ -161,6 +232,63 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
               </div>
             </motion.div>
           )}
+
+          {/* Comments Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="border border-border rounded-3xl p-8 bg-card shadow-sm mt-8"
+          >
+            <h2 className="text-3xl font-bold mb-6 flex items-center gap-2 text-foreground">
+              💬 Comments ({comments.length})
+            </h2>
+
+            {/* Comment Form */}
+            <form onSubmit={handleAddComment} className="space-y-4 mb-8">
+              <div className="grid md:grid-cols-2 gap-4">
+                <input
+                  placeholder="Your Name"
+                  value={newComment.name}
+                  onChange={(e) => setNewComment({ ...newComment, name: e.target.value })}
+                  className="border border-border p-3.5 rounded-xl bg-background text-foreground outline-none focus:border-primary/50 text-sm font-semibold"
+                  required
+                />
+              </div>
+              <textarea
+                placeholder="Share your thoughts on this heritage..."
+                value={newComment.text}
+                onChange={(e) => setNewComment({ ...newComment, text: e.target.value })}
+                className="w-full border border-border p-3.5 rounded-xl bg-background text-foreground outline-none focus:border-primary/50 text-sm min-h-[100px]"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-primary hover:bg-primary/95 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all active:scale-95 shadow-md"
+              >
+                Post Comment
+              </button>
+            </form>
+
+            {/* Comment List */}
+            <div className="space-y-4">
+              {comments.length === 0 ? (
+                <p className="text-muted-foreground italic text-sm">No comments yet. Be the first to share your thoughts!</p>
+              ) : (
+                comments.map((cmt, idx) => (
+                  <div key={idx} className="p-4 border border-border/50 rounded-2xl bg-background/50">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="font-bold text-sm text-foreground">{cmt.name}</span>
+                      <span className="text-[10px] text-muted-foreground">
+                        {new Date(cmt.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-wrap">{cmt.text}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          </motion.div>
         </div>
 
         {/* Sidebar */}
@@ -193,11 +321,11 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
             </div>
             
             <p className="text-sm text-muted-foreground italic leading-relaxed border-l-2 border-primary/30 pl-4 py-2">
-              "This artifact from the {item.era} beautifully captures the essence of {item.category.toLowerCase()} history in {item.location}."
+              "This artifact from the {item.era} beautifully captures the essence of {item.category === "Articles" ? "blog" : item.category.toLowerCase()} history in {item.location}."
             </p>
 
-            <Link href="/" className="mt-8 w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-xl transition-all font-medium">
-              ← Back to Collection
+            <Link href="/explore" className="mt-8 w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-xl transition-all font-medium">
+              ← Back to Explore
             </Link>
           </div>
         </motion.aside>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import * as L from "leaflet";
 import { useRiskSites } from "@/hooks/useRiskSites";
@@ -123,6 +123,22 @@ export default function WorldMap({
   onSearch,
 }: WorldMapProps) {
   const { sites, loading } = useRiskSites();
+  
+  // Unique mapKey to prevent Leaflet "Map container is already initialized" error during remounting
+  const [mapKey] = useState(() => `map-${Math.random().toString(36).substring(2, 9)}`);
+
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    return () => {
+      if (mapRef.current) {
+        const container = mapRef.current.querySelector(".leaflet-container") as any;
+        if (container) {
+          container._leaflet_id = null;
+        }
+      }
+    };
+  }, []);
   
   // Local states as fallbacks
   const [localUserLocation, setLocalUserLocation] = useState<[number, number] | null>(null);
@@ -558,8 +574,12 @@ export default function WorldMap({
       </div>
 
       {/* Map Container */}
-      <div className="flex-1 rounded-2xl overflow-hidden border border-border relative h-[600px] bg-card shadow-sm">
+      <div 
+        ref={mapRef}
+        className="flex-1 rounded-2xl overflow-hidden border border-border relative h-[600px] bg-card shadow-sm"
+      >
         <MapContainer
+          key={mapKey}
           center={mapCenter}
           zoom={mapZoom}
           style={{

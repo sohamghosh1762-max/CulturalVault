@@ -38,10 +38,11 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  const showAIChat = !(pathname.startsWith("/stories") || pathname.startsWith("/articles"));
   const authenticatedNavLinks = [
     { href: "/dashboard", label: t.dashboard },
     { href: "/explore", label: t.explore },
-    { href: "/chat", label: "AI Chat" },
+    ...(showAIChat ? [{ href: "/chat", label: "AI Chat" }] : []),
     { href: "/profile", label: "Profile" },
   ];
 

@@ -84,6 +84,9 @@ export default function ArticleUpload({
       articles.push({
         ...article,
         id: Date.now(),
+        createdAt: new Date().toISOString(),
+        views: 0,
+        likes: 0,
       });
 
       localStorage.setItem(

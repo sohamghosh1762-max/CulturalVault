@@ -2,13 +2,35 @@
 
 import { useEffect, useState } from "react";
 import { PageWrapper } from "@/components/layout/PageWrapper";
+import { getCategoryColor, getCategoryIcon, cn } from "@/utils";
+import Link from "next/link";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState({
-  name: "",
-  email: "",
-  image: "",
-});
+    name: "",
+    email: "",
+    image: "",
+    interests: [] as string[],
+  });
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editForm, setEditForm] = useState({
+    name: "",
+    email: "",
+    image: "",
+    interests: [] as string[],
+  });
+
+  const CULTURAL_CATEGORIES = [
+    "Architecture",
+    "Art",
+    "Music",
+    "Literature",
+    "Cuisine",
+    "Traditions",
+    "Crafts",
+    "Dance",
+  ];
 
   const [stats, setStats] = useState({
   contributions: 0,
@@ -27,20 +49,67 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  const stored =
-    localStorage.getItem("user_profile");
+    let stored = localStorage.getItem("user_profile");
+    if (!stored && localStorage.getItem("user_token")) {
+      const defaultUser = {
+        id: "u1",
+        name: "Demo User",
+        email: "demo@culturalvault.com",
+        image: "",
+        interests: ["Architecture", "Art"],
+      };
+      localStorage.setItem("user_profile", JSON.stringify(defaultUser));
+      stored = JSON.stringify(defaultUser);
+    }
 
-  if (stored) {
-    const user =
-      JSON.parse(stored);
+    if (stored) {
+      const user = JSON.parse(stored);
+      if (!localStorage.getItem("userAccount")) {
+        localStorage.setItem("userAccount", JSON.stringify({
+          id: user.id || "u1",
+          name: user.name,
+          email: user.email
+        }));
+      }
+      if (!user.interests) user.interests = [];
+      setProfile(user);
+      fetchContributions(user.name);
+    }
+  }, []);
 
-    setProfile(user);
+  const handleStartEdit = () => {
+    setEditForm({
+      name: profile.name,
+      email: profile.email,
+      image: profile.image || "",
+      interests: profile.interests || [],
+    });
+    setIsEditing(true);
+  };
 
-    fetchContributions(
-      user.name
-    );
-  }
-}, []);
+  const toggleEditFormInterest = (category: string) => {
+    setEditForm((prev) => {
+      const interests = prev.interests || [];
+      const updated = interests.includes(category)
+        ? interests.filter((c) => c !== category)
+        : [...interests, category];
+      return { ...prev, interests: updated };
+    });
+  };
+
+  const handleSaveProfile = () => {
+    const updated = {
+      ...profile,
+      name: editForm.name,
+      email: editForm.email,
+      image: editForm.image,
+      interests: editForm.interests,
+    };
+    setProfile(updated);
+    localStorage.setItem("user_profile", JSON.stringify(updated));
+    setIsEditing(false);
+    fetchContributions(updated.name);
+  };
 
   async function fetchContributions(
   userName: string
@@ -165,72 +234,134 @@ setStats({
 
           <div className="flex items-center gap-4">
 
-  {profile.image ? (
-    <img
-      src={profile.image}
-      alt="Profile"
-      className="w-20 h-20 rounded-full object-cover border-4 border-orange-500"
-    />
-  ) : (
-    <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center text-3xl font-bold text-orange-500">
-      {profile.name
-  ? profile.name.charAt(0).toUpperCase()
-  : "U"}
-    </div>
-  )}
+            {isEditing ? (
+              <label htmlFor="profilePhotoInput" className="relative cursor-pointer group block shrink-0">
+                {editForm.image ? (
+                  <div className="relative w-20 h-20">
+                    <img
+                      src={editForm.image}
+                      alt="Profile"
+                      className="w-20 h-20 rounded-full object-cover border-4 border-orange-500 group-hover:opacity-75 transition-opacity"
+                    />
+                    <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-white text-[10px] font-bold text-center leading-tight">Change<br/>Photo</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="relative w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center text-3xl font-bold text-orange-500 group-hover:bg-orange-500/30 transition-colors">
+                    {editForm.name ? editForm.name.charAt(0).toUpperCase() : "U"}
+                    <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-white text-[10px] font-bold text-center leading-tight">Change<br/>Photo</span>
+                    </div>
+                  </div>
+                )}
+                <input
+                  id="profilePhotoInput"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                      setEditForm((prev) => ({
+                        ...prev,
+                        image: reader.result as string,
+                      }));
+                    };
+                    reader.readAsDataURL(file);
+                  }}
+                />
+              </label>
+            ) : (
+              profile.image ? (
+                <img
+                  src={profile.image}
+                  alt="Profile"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-orange-500 shrink-0"
+                />
+              ) : (
+                <div className="w-20 h-20 rounded-full bg-orange-500/20 flex items-center justify-center text-3xl font-bold text-orange-500 shrink-0">
+                  {profile.name ? profile.name.charAt(0).toUpperCase() : "U"}
+                </div>
+              )
+            )}
 
-  <div>
-    <h2 className="text-3xl font-bold">
-      {profile.name}
-    </h2>
+            <div className="flex-1">
+              {isEditing ? (
+                <div className="space-y-2">
+                  <div>
+                    <label className="text-[10px] font-bold text-muted-foreground uppercase ml-1">Name</label>
+                    <input
+                      type="text"
+                      value={editForm.name}
+                      onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                      className="w-full border rounded-xl px-3 py-2 bg-background text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-primary"
+                      placeholder="Name"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-bold text-muted-foreground uppercase ml-1">Email</label>
+                    <input
+                      type="email"
+                      value={editForm.email}
+                      onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                      className="w-full border rounded-xl px-3 py-2 bg-background text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+                      placeholder="Email"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <h2 className="text-3xl font-bold">
+                    {profile.name || "User Name"}
+                  </h2>
 
-    <p className="text-muted-foreground">
-      {profile.email}
-    </p>
-  </div>
+                  <p className="text-muted-foreground text-sm">
+                    {profile.email || "email@example.com"}
+                  </p>
+                </>
+              )}
+            </div>
 
-</div>
+          </div>
 
-<div className="mt-5">
+          <div className="mt-5 flex gap-2">
+            {isEditing ? (
+              <>
+                <button
+                  onClick={handleSaveProfile}
+                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl text-sm font-semibold transition"
+                >
+                  💾 Save
+                </button>
+                
+                <label
+                  htmlFor="profilePhotoInput"
+                  className="cursor-pointer bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-sm font-semibold inline-block transition"
+                >
+                  📷 Photo
+                </label>
 
-  <label
-    htmlFor="profilePhoto"
-    className="cursor-pointer bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl inline-block"
-  >
-    📷 Upload Profile Photo
-  </label>
-
-  <input
-    id="profilePhoto"
-    type="file"
-    accept="image/*"
-    className="hidden"
-    onChange={(e) => {
-      const file = e.target.files?.[0];
-
-      if (!file) return;
-
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        const updatedProfile = {
-          ...profile,
-          image: reader.result as string,
-        };
-
-        setProfile(updatedProfile);
-
-        localStorage.setItem(
-          "user_profile",
-          JSON.stringify(updatedProfile)
-        );
-      };
-
-      reader.readAsDataURL(file);
-    }}
-  />
-
-</div>
+                <button
+                  onClick={() => setIsEditing(false)}
+                  className="bg-secondary text-foreground border border-border hover:bg-secondary/80 px-4 py-2 rounded-xl text-sm font-semibold transition"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={handleStartEdit}
+                  className="bg-primary text-primary-foreground hover:opacity-90 px-4 py-2 rounded-xl text-sm font-semibold transition"
+                >
+                  ✏️ Edit Profile
+                </button>
+              </>
+            )}
+          </div>
 
           <div className="mt-6">
 
@@ -286,6 +417,63 @@ setStats({
 
           </div>
 
+        </div>
+
+        {/* Interested Cultural Section */}
+        <div className="border rounded-3xl p-6 bg-card mt-6">
+          <h3 className="font-semibold text-lg flex items-center gap-2 mb-4">
+            ❤️ Interested Cultural Areas
+          </h3>
+          
+          {isEditing ? (
+            <div className="space-y-3">
+              <p className="text-xs text-muted-foreground">Select the cultural topics you are interested in:</p>
+              <div className="flex flex-wrap gap-2">
+                {CULTURAL_CATEGORIES.map((category) => {
+                  const isSelected = editForm.interests.includes(category);
+                  return (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => toggleEditFormInterest(category)}
+                      className={cn(
+                        "px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all",
+                        isSelected
+                          ? "bg-primary text-primary-foreground scale-105 shadow-sm"
+                          : "bg-muted text-muted-foreground hover:bg-muted/80"
+                      )}
+                    >
+                      <span>{getCategoryIcon(category)}</span>
+                      <span>{category}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <div>
+              {profile.interests && profile.interests.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {profile.interests.map((category) => (
+                    <div
+                      key={category}
+                      className={cn(
+                        "px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-sm",
+                        getCategoryColor(category)
+                      )}
+                    >
+                      <span>{getCategoryIcon(category)}</span>
+                      <span>{category}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground italic">
+                  No categories selected yet. Edit profile to choose your interests.
+                </p>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Stats */}
@@ -412,24 +600,32 @@ setStats({
             (item) => (
               <div
                 key={item._id}
-                className="border rounded-2xl p-4"
+                className="border rounded-2xl p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
               >
-                <h3 className="font-bold text-xl">
-                  {item.title}
-                </h3>
+                <div>
+                  <h3 className="font-bold text-xl">
+                    {item.title}
+                  </h3>
 
-                <p className="text-muted-foreground">
-                  {item.category}
-                </p>
+                  <p className="text-muted-foreground text-sm">
+                    {item.category}
+                  </p>
 
-                <div className="flex gap-4 mt-2 text-sm">
-                  <span>
-                    ❤️ {item.likes || 0}
-                  </span>
+                  <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-muted-foreground">
+                    <span>📅 {item.createdAt ? new Date(item.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now"}</span>
+                    <span>👁️ {item.views || 0}</span>
+                    <span>❤️ {item.likes || 0}</span>
+                    <span>💬 {item.commentsCount || 0}</span>
+                  </div>
+                </div>
 
-                  <span>
-                    👁 {item.views || 0}
-                  </span>
+                <div className="shrink-0">
+                  <Link
+                    href={`/community-gallery/${item._id}`}
+                    className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow-sm transition-colors"
+                  >
+                    Open Page →
+                  </Link>
                 </div>
               </div>
             )

@@ -139,6 +139,8 @@ export default function StoryUpload({
         audio: story.audio,
         image: story.image,
         gallery: story.gallery,
+        views: 0,
+        likes: 0,
       }),
     });
 

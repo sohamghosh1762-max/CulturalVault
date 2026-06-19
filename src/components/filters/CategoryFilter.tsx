@@ -21,10 +21,8 @@ export function CategoryFilter({
 
   const categoryLabels: Record<string, string> = {
     All: t.all,
-
     Stories: "Stories",
-    Articles: "Articles",
-
+    Articles: "Blogs",
     Architecture: t.architecture,
     Art: t.art,
     Music: t.music,
@@ -36,16 +34,14 @@ export function CategoryFilter({
   };
 
   return (
-    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide items-center">
       {CATEGORIES.map((cat) => {
         const active = value === cat;
 
         return (
           <motion.button
             key={cat}
-            onClick={() =>
-              onChange(cat as Category | "All")
-            }
+            onClick={() => onChange(cat as Category | "All")}
             whileTap={{ scale: 0.95 }}
             className={cn(
               "flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all flex-shrink-0 border",
@@ -56,14 +52,13 @@ export function CategoryFilter({
           >
             {cat !== "All" && (
               <span className="text-xs">
-                {getCategoryIcon(cat)}
+                {cat === "Articles" ? "📝" : getCategoryIcon(cat)}
               </span>
             )}
-
             {categoryLabels[cat] || cat}
           </motion.button>
         );
       })}
     </div>
   );
-}
+}

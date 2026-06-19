@@ -56,3 +56,27 @@ export function generateStars(rating: number): { full: number; half: boolean; em
   const empty = 5 - full - (half ? 1 : 0);
   return { full, half, empty };
 }
+
+export interface ViewedItem {
+  id?: string;
+  type: "story" | "article" | "community" | "risk";
+  title: string;
+  category?: string;
+  path: string;
+  viewedAt: number;
+}
+
+export function recordRecentlyViewed(item: Omit<ViewedItem, "viewedAt">) {
+  if (typeof window === "undefined") return;
+  try {
+    const history: ViewedItem[] = JSON.parse(localStorage.getItem("recently_viewed_history") || "[]");
+    const filtered = history.filter((h) => !(h.type === item.type && (h.id === item.id || h.path === item.path)));
+    filtered.unshift({
+      ...item,
+      viewedAt: Date.now()
+    });
+    localStorage.setItem("recently_viewed_history", JSON.stringify(filtered.slice(0, 10)));
+  } catch (err) {
+    console.error("Failed to record view history", err);
+  }
+}

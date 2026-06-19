@@ -23,6 +23,8 @@ export interface CulturalItem {
 
   // Content Type
   contentType?: ContentType;
+  views?: number;
+  likes?: number;
 }
 
 export type ContentType =

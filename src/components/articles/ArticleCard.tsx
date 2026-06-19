@@ -9,8 +9,24 @@ export default function ArticleCard({
   onDelete: (id: number) => void;
   onEdit: (article: any) => void;
 }) {
+  const handleDragStart = (e: React.DragEvent) => {
+    e.dataTransfer.setData("application/json", JSON.stringify({
+      id: article.id,
+      title: article.title,
+      type: "article",
+      category: article.category || "Articles",
+      description: article.shortDescription,
+      content: article.content,
+      region: article.region
+    }));
+  };
+
   return (
-    <div className="border rounded-2xl overflow-hidden bg-card shadow-sm hover:shadow-lg transition-all">
+    <div 
+      draggable
+      onDragStart={handleDragStart}
+      className="border rounded-2xl overflow-hidden bg-card shadow-sm hover:shadow-lg transition-all cursor-grab active:cursor-grabbing"
+    >
       
       {/* Cover Image */}
       {article.image ? (
@@ -73,6 +89,14 @@ export default function ArticleCard({
             {article.content}
           </div>
         </details>
+
+        <div className="mt-4 pt-3 border-t border-border/50 flex items-center justify-between text-[11px] text-muted-foreground">
+          <span>📅 {article.createdAt ? new Date(article.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now"}</span>
+          <div className="flex items-center gap-2.5">
+            <span>👁️ {article.views !== undefined ? article.views : 0}</span>
+            <span>❤️ {article.likes !== undefined ? article.likes : 0}</span>
+          </div>
+        </div>
 
         {/* Buttons */}
         <div className="flex gap-2 mt-5">

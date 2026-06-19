@@ -3,6 +3,11 @@ import mongoose from "mongoose";
 const ContributionSchema =
   new mongoose.Schema(
     {
+      userId: {
+        type: String,
+        default: "",
+      },
+
       title: {
         type: String,
         required: true,

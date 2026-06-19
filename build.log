@@ -1,0 +1,1251 @@
+
+> cultural-vault@1.0.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/bipasasaha/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/bipasasaha/Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/package-lock.json
+
+▲ Next.js 16.2.9 (Turbopack)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 41 errors:
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:1577:1
+Module not found: Can't resolve 'zod'
+  [90m1575 |[0m   zodSchema [36mas[0m zodSchema9
+  [90m1576 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m1577 |[0m [36mimport[0m { z [36mas[0m z12 } [36mfrom[0m [32m"zod"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1578 |[0m [36mvar[0m parallelSearchInputSchema = lazySchema9(
+  [90m1579 |[0m   () => zodSchema9(
+  [90m1580 |[0m     z12.object({
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:1659:1
+Module not found: Can't resolve 'zod'
+  [90m1657 |[0m   zodSchema [36mas[0m zodSchema10
+  [90m1658 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m1659 |[0m [36mimport[0m { z [36mas[0m z13 } [36mfrom[0m [32m"zod"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1660 |[0m [36mvar[0m perplexitySearchInputSchema = lazySchema10(
+  [90m1661 |[0m   () => zodSchema10(
+  [90m1662 |[0m     z13.object({
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs:1054:1
+Module not found: Can't resolve 'zod/v3'
+  [90m1052 |[0m
+  [90m1053 |[0m [90m// src/to-json-schema/zod3-to-json-schema/select-parser.ts[0m
+[31m[1m>[0m [90m1054 |[0m [36mimport[0m { [33mZodFirstPartyTypeKind[0m [36mas[0m [33mZodFirstPartyTypeKind3[0m } [36mfrom[0m [32m"zod/v3"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1055 |[0m
+  [90m1056 |[0m [90m// src/to-json-schema/zod3-to-json-schema/parsers/any.ts[0m
+  [90m1057 |[0m [36mfunction[0m parseAnyDef() {
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs:1062:1
+Module not found: Can't resolve 'zod/v3'
+  [90m1060 |[0m
+  [90m1061 |[0m [90m// src/to-json-schema/zod3-to-json-schema/parsers/array.ts[0m
+[31m[1m>[0m [90m1062 |[0m [36mimport[0m { [33mZodFirstPartyTypeKind[0m } [36mfrom[0m [32m"zod/v3"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1063 |[0m [36mfunction[0m parseArrayDef(def, refs) {
+  [90m1064 |[0m   [36mvar[0m _a2, _b2, _c;
+  [90m1065 |[0m   [36mconst[0m res = {
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs:1243:1
+Module not found: Can't resolve 'zod/v3'
+  [90m1241 |[0m
+  [90m1242 |[0m [90m// src/to-json-schema/zod3-to-json-schema/parsers/record.ts[0m
+[31m[1m>[0m [90m1243 |[0m [36mimport[0m {
+  [90m     |[0m [31m[1m^^^^^^^[0m
+[31m[1m>[0m [90m1244 |[0m   [33mZodFirstPartyTypeKind[0m [36mas[0m [33mZodFirstPartyTypeKind2[0m
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m1245 |[0m } [36mfrom[0m [32m"zod/v3"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^[0m
+  [90m1246 |[0m
+  [90m1247 |[0m [90m// src/to-json-schema/zod3-to-json-schema/parsers/string.ts[0m
+  [90m1248 |[0m [36mvar[0m emojiRegex = [36mvoid[0m [35m0[0m;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:12:1
+Module not found: Can't resolve 'zod/v4'
+  [90m10 |[0m
+  [90m11 |[0m [90m// src/errors/create-gateway-error.ts[0m
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { z [36mas[0m z2 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m
+  [90m14 |[0m [90m// src/errors/gateway-error.ts[0m
+  [90m15 |[0m [36mvar[0m marker = [32m"vercel.ai.gateway.error"[0m;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:161:1
+Module not found: Can't resolve 'zod/v4'
+  [90m159 |[0m
+  [90m160 |[0m [90m// src/errors/gateway-model-not-found-error.ts[0m
+[31m[1m>[0m [90m161 |[0m [36mimport[0m { z } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m162 |[0m [36mimport[0m { lazySchema, zodSchema } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+  [90m163 |[0m [36mvar[0m name4 = [32m"GatewayModelNotFoundError"[0m;
+  [90m164 |[0m [36mvar[0m marker5 = [32m`vercel.ai.gateway.error.[0m${name4[32m}`[0m;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:512:1
+Module not found: Can't resolve 'zod/v4'
+  [90m510 |[0m
+  [90m511 |[0m [90m// src/errors/parse-auth-method.ts[0m
+[31m[1m>[0m [90m512 |[0m [36mimport[0m { z [36mas[0m z3 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m513 |[0m [36mimport[0m {
+  [90m514 |[0m   lazySchema [36mas[0m lazySchema3,
+  [90m515 |[0m   safeValidateTypes [36mas[0m safeValidateTypes2,
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:539:1
+Module not found: Can't resolve 'zod/v4'
+  [90m537 |[0m   zodSchema [36mas[0m zodSchema4
+  [90m538 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m539 |[0m [36mimport[0m { z [36mas[0m z4 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m540 |[0m
+  [90m541 |[0m [90m// src/gateway-model-entry.ts[0m
+  [90m542 |[0m [36mvar[0m [33mKNOWN_MODEL_TYPES[0m = [
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:652:1
+Module not found: Can't resolve 'zod/v4'
+  [90m650 |[0m   zodSchema [36mas[0m zodSchema5
+  [90m651 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m652 |[0m [36mimport[0m { z [36mas[0m z5 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m653 |[0m [36mvar[0m [33mGatewaySpendReport[0m = [36mclass[0m {
+  [90m654 |[0m   constructor(config) {
+  [90m655 |[0m     [36mthis[0m.config = config;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:761:1
+Module not found: Can't resolve 'zod/v4'
+  [90m759 |[0m   zodSchema [36mas[0m zodSchema6
+  [90m760 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m761 |[0m [36mimport[0m { z [36mas[0m z6 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m762 |[0m [36mvar[0m [33mGatewayGenerationInfoFetcher[0m = [36mclass[0m {
+  [90m763 |[0m   constructor(config) {
+  [90m764 |[0m     [36mthis[0m.config = config;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:855:1
+Module not found: Can't resolve 'zod/v4'
+  [90m853 |[0m   resolve [36mas[0m resolve4
+  [90m854 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m855 |[0m [36mimport[0m { z [36mas[0m z7 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m856 |[0m [36mvar[0m [33mGatewayLanguageModel[0m = [36mclass[0m {
+  [90m857 |[0m   constructor(modelId, config) {
+  [90m858 |[0m     [36mthis[0m.modelId = modelId;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:1012:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1010 |[0m   zodSchema [36mas[0m zodSchema7
+  [90m1011 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m1012 |[0m [36mimport[0m { z [36mas[0m z8 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1013 |[0m [36mvar[0m [33mGatewayEmbeddingModel[0m = [36mclass[0m {
+  [90m1014 |[0m   constructor(modelId, config) {
+  [90m1015 |[0m     [36mthis[0m.modelId = modelId;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:1116:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1114 |[0m   resolve [36mas[0m resolve6
+  [90m1115 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m1116 |[0m [36mimport[0m { z [36mas[0m z9 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1117 |[0m [36mvar[0m [33mGatewayImageModel[0m = [36mclass[0m {
+  [90m1118 |[0m   constructor(modelId, config) {
+  [90m1119 |[0m     [36mthis[0m.modelId = modelId;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:1262:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1260 |[0m   resolve [36mas[0m resolve7
+  [90m1261 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m1262 |[0m [36mimport[0m { z [36mas[0m z10 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1263 |[0m [36mvar[0m [33mGatewayVideoModel[0m = [36mclass[0m {
+  [90m1264 |[0m   constructor(modelId, config) {
+  [90m1265 |[0m     [36mthis[0m.modelId = modelId;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs:1471:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1469 |[0m   zodSchema [36mas[0m zodSchema8
+  [90m1470 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m1471 |[0m [36mimport[0m { z [36mas[0m z11 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1472 |[0m [36mvar[0m [33mGatewayRerankingModel[0m = [36mclass[0m {
+  [90m1473 |[0m   constructor(modelId, config) {
+  [90m1474 |[0m     [36mthis[0m.modelId = modelId;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/gateway/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:25:1
+Module not found: Can't resolve 'zod/v4'
+  [90m23 |[0m   zodSchema [36mas[0m zodSchema3
+  [90m24 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m25 |[0m [36mimport[0m { z [36mas[0m z3 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m26 |[0m
+  [90m27 |[0m [90m// src/google-error.ts[0m
+  [90m28 |[0m [36mimport[0m {
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:33:1
+Module not found: Can't resolve 'zod/v4'
+  [90m31 |[0m   zodSchema
+  [90m32 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m33 |[0m [36mimport[0m { z } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m34 |[0m [36mvar[0m googleErrorDataSchema = lazySchema(
+  [90m35 |[0m   () => zodSchema(
+  [90m36 |[0m     z.object({
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:55:1
+Module not found: Can't resolve 'zod/v4'
+  [90m53 |[0m   zodSchema [36mas[0m zodSchema2
+  [90m54 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m55 |[0m [36mimport[0m { z [36mas[0m z2 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m56 |[0m [36mvar[0m googleEmbeddingContentPartSchema = z2.union([
+  [90m57 |[0m   z2.object({ text: z2.string() }),
+  [90m58 |[0m   z2.object({
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:253:1
+Module not found: Can't resolve 'zod/v4'
+  [90m251 |[0m   zodSchema [36mas[0m zodSchema5
+  [90m252 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m253 |[0m [36mimport[0m { z [36mas[0m z5 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m254 |[0m
+  [90m255 |[0m [90m// src/convert-google-generative-ai-usage.ts[0m
+  [90m256 |[0m [36mfunction[0m convertGoogleGenerativeAIUsage(usage) {
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:774:1
+Module not found: Can't resolve 'zod/v4'
+  [90m772 |[0m   zodSchema [36mas[0m zodSchema4
+  [90m773 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m774 |[0m [36mimport[0m { z [36mas[0m z4 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m775 |[0m [36mvar[0m googleLanguageModelOptions = lazySchema4(
+  [90m776 |[0m   () => zodSchema4(
+  [90m777 |[0m     z4.object({
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:2499:1
+Module not found: Can't resolve 'zod/v4'
+  [90m2497 |[0m [90m// src/tool/code-execution.ts[0m
+  [90m2498 |[0m [36mimport[0m { createProviderToolFactoryWithOutputSchema } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m2499 |[0m [36mimport[0m { z [36mas[0m z6 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2500 |[0m [36mvar[0m codeExecution = createProviderToolFactoryWithOutputSchema({
+  [90m2501 |[0m   id: [32m"google.code_execution"[0m,
+  [90m2502 |[0m   inputSchema: z6.object({
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:2518:1
+Module not found: Can't resolve 'zod/v4'
+  [90m2516 |[0m   zodSchema [36mas[0m zodSchema6
+  [90m2517 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m2518 |[0m [36mimport[0m { z [36mas[0m z7 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2519 |[0m [36mvar[0m enterpriseWebSearch = createProviderToolFactory({
+  [90m2520 |[0m   id: [32m"google.enterprise_web_search"[0m,
+  [90m2521 |[0m   inputSchema: lazySchema6(() => zodSchema6(z7.object({})))
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:2530:1
+Module not found: Can't resolve 'zod/v4'
+  [90m2528 |[0m   zodSchema [36mas[0m zodSchema7
+  [90m2529 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m2530 |[0m [36mimport[0m { z [36mas[0m z8 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2531 |[0m [36mvar[0m fileSearchArgsBaseSchema = z8.object({
+  [90m2532 |[0m   /** [33mThe[0m names [36mof[0m the file_search_stores to retrieve [36mfrom[0m.
+  [90m2533 |[0m    *  [33mExample[0m: [32m`fileSearchStores/my-file-search-store-123`[0m
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:2561:1
+Module not found: Can't resolve 'zod/v4'
+  [90m2559 |[0m   zodSchema [36mas[0m zodSchema8
+  [90m2560 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m2561 |[0m [36mimport[0m { z [36mas[0m z9 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2562 |[0m [36mvar[0m googleMaps = createProviderToolFactory3({
+  [90m2563 |[0m   id: [32m"google.google_maps"[0m,
+  [90m2564 |[0m   inputSchema: lazySchema8(() => zodSchema8(z9.object({})))
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:2573:1
+Module not found: Can't resolve 'zod/v4'
+  [90m2571 |[0m   zodSchema [36mas[0m zodSchema9
+  [90m2572 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m2573 |[0m [36mimport[0m { z [36mas[0m z10 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2574 |[0m [36mvar[0m googleSearchToolArgsBaseSchema = z10.object({
+  [90m2575 |[0m   searchTypes: z10.object({
+  [90m2576 |[0m     webSearch: z10.object({}).optional(),
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:2600:1
+Module not found: Can't resolve 'zod/v4'
+  [90m2598 |[0m   zodSchema [36mas[0m zodSchema10
+  [90m2599 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m2600 |[0m [36mimport[0m { z [36mas[0m z11 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2601 |[0m [36mvar[0m urlContext = createProviderToolFactory5({
+  [90m2602 |[0m   id: [32m"google.url_context"[0m,
+  [90m2603 |[0m   inputSchema: lazySchema10(() => zodSchema10(z11.object({})))
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:2608:1
+Module not found: Can't resolve 'zod/v4'
+  [90m2606 |[0m [90m// src/tool/vertex-rag-store.ts[0m
+  [90m2607 |[0m [36mimport[0m { createProviderToolFactory [36mas[0m createProviderToolFactory6 } [36mfrom[0m [32m"@ai-sdk/provide...[0m
+[31m[1m>[0m [90m2608 |[0m [36mimport[0m { z [36mas[0m z12 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2609 |[0m [36mvar[0m vertexRagStore = createProviderToolFactory6({
+  [90m2610 |[0m   id: [32m"google.vertex_rag_store"[0m,
+  [90m2611 |[0m   inputSchema: z12.object({
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:2689:1
+Module not found: Can't resolve 'zod/v4'
+  [90m2687 |[0m   zodSchema [36mas[0m zodSchema11
+  [90m2688 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m2689 |[0m [36mimport[0m { z [36mas[0m z13 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2690 |[0m [36mvar[0m [33mGoogleGenerativeAIImageModel[0m = [36mclass[0m {
+  [90m2691 |[0m   constructor(modelId, settings, config) {
+  [90m2692 |[0m     [36mthis[0m.modelId = modelId;
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:2979:1
+Module not found: Can't resolve 'zod/v4'
+  [90m2977 |[0m   zodSchema [36mas[0m zodSchema12
+  [90m2978 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m2979 |[0m [36mimport[0m { z [36mas[0m z14 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2980 |[0m [36mvar[0m [33mGoogleGenerativeAIVideoModel[0m = [36mclass[0m {
+  [90m2981 |[0m   constructor(modelId, config) {
+  [90m2982 |[0m     [36mthis[0m.modelId = modelId;
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:4354:1
+Module not found: Can't resolve 'zod/v4'
+  [90m4352 |[0m   zodSchema [36mas[0m zodSchema13
+  [90m4353 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m4354 |[0m [36mimport[0m { z [36mas[0m z15 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4355 |[0m [36mvar[0m tokenByModalitySchema = () => z15.object({
+  [90m4356 |[0m   modality: z15.string().nullish(),
+  [90m4357 |[0m   tokens: z15.number().nullish()
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs:4686:1
+Module not found: Can't resolve 'zod/v4'
+  [90m4684 |[0m   zodSchema [36mas[0m zodSchema14
+  [90m4685 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m4686 |[0m [36mimport[0m { z [36mas[0m z16 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m4687 |[0m [36mvar[0m googleInteractionsLanguageModelOptions = lazySchema14(
+  [90m4688 |[0m   () => zodSchema14(
+  [90m4689 |[0m     z16.object({
+
+
+
+Import trace:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/google/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs:982:1
+Module not found: Can't resolve 'zod/v4'
+  [90m980 |[0m [90m// src/schema.ts[0m
+  [90m981 |[0m [36mimport[0m { [33mTypeValidationError[0m } [36mfrom[0m [32m"@ai-sdk/provider"[0m;
+[31m[1m>[0m [90m982 |[0m [36mimport[0m * [36mas[0m z4 [36mfrom[0m [32m"zod/v4"[0m;
+  [90m    |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m983 |[0m
+  [90m984 |[0m [90m// src/add-additional-properties-to-json-schema.ts[0m
+  [90m985 |[0m [36mfunction[0m addAdditionalPropertiesToJsonSchema(jsonSchema2) {
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/provider-utils/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs:1233:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1231 |[0m   convertUint8ArrayToBase64
+  [90m1232 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m1233 |[0m [36mimport[0m { z } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1234 |[0m
+  [90m1235 |[0m [90m// src/prompt/split-data-url.ts[0m
+  [90m1236 |[0m [36mfunction[0m splitDataUrl(dataUrl) {
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs:1919:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1917 |[0m   safeValidateTypes
+  [90m1918 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m1919 |[0m [36mimport[0m { z [36mas[0m z6 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1920 |[0m
+  [90m1921 |[0m [90m// src/prompt/message.ts[0m
+  [90m1922 |[0m [36mimport[0m { z [36mas[0m z5 } [36mfrom[0m [32m"zod/v4"[0m;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs:1922:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1920 |[0m
+  [90m1921 |[0m [90m// src/prompt/message.ts[0m
+[31m[1m>[0m [90m1922 |[0m [36mimport[0m { z [36mas[0m z5 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1923 |[0m
+  [90m1924 |[0m [90m// src/types/provider-metadata.ts[0m
+  [90m1925 |[0m [36mimport[0m { z [36mas[0m z3 } [36mfrom[0m [32m"zod/v4"[0m;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs:1925:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1923 |[0m
+  [90m1924 |[0m [90m// src/types/provider-metadata.ts[0m
+[31m[1m>[0m [90m1925 |[0m [36mimport[0m { z [36mas[0m z3 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1926 |[0m
+  [90m1927 |[0m [90m// src/types/json-value.ts[0m
+  [90m1928 |[0m [36mimport[0m { z [36mas[0m z2 } [36mfrom[0m [32m"zod/v4"[0m;
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs:1928:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1926 |[0m
+  [90m1927 |[0m [90m// src/types/json-value.ts[0m
+[31m[1m>[0m [90m1928 |[0m [36mimport[0m { z [36mas[0m z2 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1929 |[0m [36mvar[0m jsonValueSchema = z2.lazy(
+  [90m1930 |[0m   () => z2.union([
+  [90m1931 |[0m     z2.[36mnull[0m(),
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs:1947:1
+Module not found: Can't resolve 'zod/v4'
+  [90m1945 |[0m
+  [90m1946 |[0m [90m// src/prompt/content-part.ts[0m
+[31m[1m>[0m [90m1947 |[0m [36mimport[0m { z [36mas[0m z4 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m1948 |[0m [36mvar[0m textPartSchema = z4.object({
+  [90m1949 |[0m   [36mtype[0m: z4.literal([32m"text"[0m),
+  [90m1950 |[0m   text: z4.string(),
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs:5371:1
+Module not found: Can't resolve 'zod/v4'
+  [90m5369 |[0m
+  [90m5370 |[0m [90m// src/ui-message-stream/ui-message-chunks.ts[0m
+[31m[1m>[0m [90m5371 |[0m [36mimport[0m { z [36mas[0m z7 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5372 |[0m [36mimport[0m { lazySchema, zodSchema } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+  [90m5373 |[0m [36mvar[0m toolMetadataSchema = z7.record(
+  [90m5374 |[0m   z7.string(),
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs:9021:1
+Module not found: Can't resolve 'zod/v4'
+  [90m9019 |[0m   zodSchema [36mas[0m zodSchema2
+  [90m9020 |[0m } [36mfrom[0m [32m"@ai-sdk/provider-utils"[0m;
+[31m[1m>[0m [90m9021 |[0m [36mimport[0m { z [36mas[0m z8 } [36mfrom[0m [32m"zod/v4"[0m;
+  [90m     |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m9022 |[0m [36mvar[0m toolMetadataSchema2 = z8.record(
+  [90m9023 |[0m   z8.string(),
+  [90m9024 |[0m   jsonValueSchema.optional()
+
+
+
+Import traces:
+  App Route:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/api/chat/route.ts
+
+  Client Component Browser:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component Browser]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ai/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/@ai-sdk/react/dist/index.mjs [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Client Component SSR]
+    ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/src/app/chat/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:1577:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:1659:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/provider-utils/dist/index.mjs:1054:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/provider-utils/dist/index.mjs:1062:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/provider-utils/dist/index.mjs:1243:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:12:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:161:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:512:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:539:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:652:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:761:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:855:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:1012:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:1116:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:1262:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/gateway/dist/index.mjs:1471:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:25:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:33:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:55:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:253:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:774:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:2499:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:2518:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:2530:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:2561:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:2573:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:2600:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:2608:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:2689:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:2979:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:4354:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/google/dist/index.mjs:4686:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at ./Documents/collage presentation/CulturalVault/untitled folder/CulturalVault/node_modules/ (ai-sdk/provider-utils/dist/index.mjs:982:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    ... collapsed 8 duplicate lines matching above 1 lines 8 times...

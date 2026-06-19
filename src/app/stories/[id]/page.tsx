@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
+import { recordRecentlyViewed } from "@/utils";
 
 const StoryLocationMap = dynamic(
   () =>
@@ -24,24 +25,26 @@ export default function StoryDetailsPage() {
     useState(true);
 
   useEffect(() => {
-    async function fetchStory() {
+    async function fetchAndIncrementStory() {
       try {
-        const res = await fetch(
-          "/api/stories"
-        );
-
-        const stories =
-          await res.json();
-
-        const storiesArray = Array.isArray(stories) ? stories : [];
-
-        const selectedStory =
-          storiesArray.find(
-            (item: any) =>
-              item._id === params.id
-          );
-
-        setStory(selectedStory);
+        // Increment views in MongoDB and fetch the latest state
+        const patchRes = await fetch(`/api/stories/${params.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ incrementViews: true })
+        });
+        
+        if (patchRes.ok) {
+          const selectedStory = await patchRes.json();
+          setStory(selectedStory);
+        } else {
+          // Fallback if patch route fails
+          const res = await fetch("/api/stories");
+          const stories = await res.json();
+          const storiesArray = Array.isArray(stories) ? stories : [];
+          const selectedStory = storiesArray.find((item: any) => item._id === params.id);
+          setStory(selectedStory);
+        }
       } catch (error) {
         console.error(error);
       } finally {
@@ -49,8 +52,38 @@ export default function StoryDetailsPage() {
       }
     }
 
-    fetchStory();
+    if (params.id) {
+      fetchAndIncrementStory();
+    }
   }, [params.id]);
+
+  const handleLike = async () => {
+    try {
+      const res = await fetch(`/api/stories/${params.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ incrementLikes: true })
+      });
+      if (res.ok) {
+        const updated = await res.json();
+        setStory(updated);
+      }
+    } catch (err) {
+      console.error("Failed to like story", err);
+    }
+  };
+
+  useEffect(() => {
+    if (story) {
+      recordRecentlyViewed({
+        id: story._id,
+        type: "story",
+        title: story.title,
+        category: story.category,
+        path: `/stories/${story._id}`
+      });
+    }
+  }, [story]);
 
   if (loading) {
     return (
@@ -105,7 +138,7 @@ export default function StoryDetailsPage() {
               Story Information
             </h2>
 
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               <p>
                 🌍 <strong>Region:</strong>{" "}
                 {story.region}
@@ -121,6 +154,27 @@ export default function StoryDetailsPage() {
                 🎙{" "}
                 <strong>Narrator:</strong>{" "}
                 {story.narrator}
+              </p>
+
+              <p>
+                📅 <strong>Date Posted:</strong>{" "}
+                {story.createdAt ? new Date(story.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now"}
+              </p>
+
+              <p>
+                👁️ <strong>Views:</strong>{" "}
+                {story.views !== undefined ? story.views : 0}
+              </p>
+
+              <p className="flex flex-wrap items-center gap-2">
+                ❤️ <strong>Likes:</strong>{" "}
+                <span className="font-semibold">{story.likes !== undefined ? story.likes : 0}</span>
+                <button
+                  onClick={handleLike}
+                  className="ml-2 px-3 py-1 bg-red-500 hover:bg-red-600 active:scale-95 text-white rounded-full text-[11px] font-semibold shadow transition-all flex items-center gap-1"
+                >
+                  ❤️ Like Story
+                </button>
               </p>
             </div>
           </div>

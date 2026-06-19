@@ -55,6 +55,7 @@ export async function POST(
 
     const contribution =
       await Contribution.create({
+        userId: body.userId || "",
         title: body.title,
         category: body.category,
         region: body.region,

@@ -49,13 +49,6 @@ export function HeroSection() {
               {t.startExploring}
             </a>
             <a
-              href="/bookmarks"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-xl font-medium hover:bg-secondary/80 transition-colors"
-            >
-             {t.myCollection}
-            </a>
-
-            <a
     href="/community-gallery"
     className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-xl font-medium hover:bg-orange-600 transition-all hover:scale-105 shadow-lg shadow-orange-500/25"
   >

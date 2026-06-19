@@ -46,10 +46,11 @@ export function Sidebar() {
   ];
 
   // 2. Core User Links
+  const showAIChat = !(pathname.startsWith("/stories") || pathname.startsWith("/articles"));
   const userCoreLinks = [
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/explore", label: "Explore", icon: Compass },
-    { href: "/chat", label: "AI Chat", icon: MessageSquare },
+    ...(showAIChat ? [{ href: "/chat", label: "AI Chat", icon: MessageSquare }] : []),
     { href: "/profile", label: "Profile", icon: User },
   ];
 
@@ -165,12 +166,7 @@ export function Sidebar() {
               
               <div className="my-3 border-t border-border/50" />
               
-              <div className="px-3 mb-1.5">
-                <span className="text-[11px] font-bold tracking-wider text-muted-foreground uppercase">
-                  Overall Features
-                </span>
-              </div>
-              
+
               {extraLinks.map(renderExpandedLink)}
 
               <div className="flex-1 min-h-[40px]" />

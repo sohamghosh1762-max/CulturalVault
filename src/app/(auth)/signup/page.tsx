@@ -32,6 +32,27 @@ export default function SignUpPage() {
       }
 
       localStorage.setItem("user_token", data.token);
+      if (data.user) {
+        localStorage.setItem(
+          "userAccount",
+          JSON.stringify({
+            id: data.user.id,
+            name: data.user.name,
+            email: data.user.email,
+          })
+        );
+        localStorage.setItem(
+          "user_profile",
+          JSON.stringify({
+            id: data.user.id,
+            name: data.user.name,
+            email: data.user.email,
+            image: "",
+            interests: [], // default empty interests for new sign up
+            createdAt: new Date().toISOString(),
+          })
+        );
+      }
       router.push("/explore");
     } catch (err: any) {
       setError(err.message);
@@ -141,11 +162,11 @@ export default function SignUpPage() {
             <div className="border-t border-white/10 pt-5 text-center">
               <p className="text-sm text-muted-foreground">
                 Already registered?{" "}
-                <Link
+                 <Link
                   href="/signin"
-                  className="text-secondary hover:underline font-medium"
+                  className="text-orange-500 hover:text-orange-400 hover:underline font-semibold"
                 >
-                  Sign in
+                  Sign In
                 </Link>
               </p>
 

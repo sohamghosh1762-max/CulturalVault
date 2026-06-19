@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
+import { recordRecentlyViewed } from "@/utils";
 
 const StoryLocationMap = dynamic(
   () =>
@@ -22,6 +23,55 @@ export default function CommunityDetailsPage() {
 
   const [loading, setLoading] =
     useState(true);
+
+  const [comments, setComments] = useState<any[]>([]);
+  const [newComment, setNewComment] = useState({ name: "", text: "" });
+
+  useEffect(() => {
+    if (item) {
+      const storedComments = localStorage.getItem(`comments-${item._id}`);
+      if (storedComments) {
+        setComments(JSON.parse(storedComments));
+      } else {
+        const mock = [
+          {
+            name: "Sofia Rossi",
+            text: "This is absolutely beautiful! Thank you for sharing this oral history.",
+            createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+          },
+          {
+            name: "Liam O'Connor",
+            text: "Fascinating details. It is so important to preserve these local traditions.",
+            createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
+          }
+        ];
+        localStorage.setItem(`comments-${item._id}`, JSON.stringify(mock));
+        setComments(mock);
+      }
+    }
+  }, [item]);
+
+  const handleAddComment = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newComment.name.trim() || !newComment.text.trim()) return;
+
+    const comment = {
+      name: newComment.name.trim(),
+      text: newComment.text.trim(),
+      createdAt: new Date().toISOString()
+    };
+
+    const updated = [comment, ...comments];
+    setComments(updated);
+    localStorage.setItem(`comments-${item._id}`, JSON.stringify(updated));
+    
+    setItem((prev: any) => prev ? {
+      ...prev,
+      commentsCount: updated.length
+    } : null);
+
+    setNewComment({ name: "", text: "" });
+  };
 
   useEffect(() => {
     async function fetchItem() {
@@ -66,6 +116,18 @@ export default function CommunityDetailsPage() {
 
     fetchItem();
   }, [params.id]);
+
+  useEffect(() => {
+    if (item) {
+      recordRecentlyViewed({
+        id: item._id,
+        type: "community",
+        title: item.title,
+        category: item.category,
+        path: `/community-gallery/${item._id}`
+      });
+    }
+  }, [item]);
 
   if (loading) {
     return (
@@ -148,6 +210,10 @@ export default function CommunityDetailsPage() {
 
   <div className="border rounded-xl px-5 py-3">
     📅 {new Date(item.createdAt).toLocaleDateString()}
+  </div>
+
+  <div className="border rounded-xl px-5 py-3">
+    💬 {item.commentsCount || comments.length} Comments
   </div>
 
 </div>
@@ -404,6 +470,58 @@ export default function CommunityDetailsPage() {
 
         </div>
       )}
+
+      {/* Comments Section */}
+      <div className="border rounded-3xl p-8 bg-card shadow-sm mt-8">
+        <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
+          💬 Comments ({comments.length})
+        </h2>
+
+        {/* Comment Form */}
+        <form onSubmit={handleAddComment} className="space-y-4 mb-8">
+          <div className="grid md:grid-cols-2 gap-4">
+            <input
+              placeholder="Your Name"
+              value={newComment.name}
+              onChange={(e) => setNewComment({ ...newComment, name: e.target.value })}
+              className="border border-border p-3.5 rounded-xl bg-background text-foreground outline-none focus:border-primary/50 text-sm font-semibold"
+              required
+            />
+          </div>
+          <textarea
+            placeholder="Share your thoughts on this heritage..."
+            value={newComment.text}
+            onChange={(e) => setNewComment({ ...newComment, text: e.target.value })}
+            className="w-full border border-border p-3.5 rounded-xl bg-background text-foreground outline-none focus:border-primary/50 text-sm min-h-[100px]"
+            required
+          />
+          <button
+            type="submit"
+            className="bg-primary hover:bg-primary/95 text-white px-6 py-3 rounded-xl text-sm font-semibold transition animate-all"
+          >
+            Post Comment
+          </button>
+        </form>
+
+        {/* Comment List */}
+        <div className="space-y-4">
+          {comments.length === 0 ? (
+            <p className="text-muted-foreground italic text-sm">No comments yet. Be the first to share your thoughts!</p>
+          ) : (
+            comments.map((cmt, idx) => (
+              <div key={idx} className="p-4 border border-border/50 rounded-2xl bg-background/50">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="font-bold text-sm text-foreground">{cmt.name}</span>
+                  <span className="text-[10px] text-muted-foreground">
+                    {new Date(cmt.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-wrap">{cmt.text}</p>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
 
     </div>
   );

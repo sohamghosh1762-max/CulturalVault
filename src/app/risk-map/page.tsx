@@ -5,6 +5,7 @@ import { ShieldAlert, Search, History } from "lucide-react";
 import dynamic from "next/dynamic";
 import RiskCard from "@/components/risk/RiskCard";
 import { useRiskSites } from "@/hooks/useRiskSites";
+import { recordRecentlyViewed } from "@/utils";
 
 // Dynamic Leaflet import to prevent Server-Side Rendering errors
 const WorldMap = dynamic(
@@ -73,6 +74,10 @@ const LOCAL_GEO_DB: Record<string, { lat: number; lng: number }> = {
 export default function RiskMapPage() {
   const { sites, loading } = useRiskSites();
   
+  useEffect(() => {
+    console.log("RiskMapPage state:", { loading, sitesCount: sites.length });
+  }, [loading, sites]);
+  
   // Shared States with Map Component
   const [selectedSite, setSelectedSite] = useState<any | null>(null);
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
@@ -89,6 +94,12 @@ export default function RiskMapPage() {
     if (saved) {
       setRecentSearches(JSON.parse(saved));
     }
+    // Record view of Risk Management
+    recordRecentlyViewed({
+      type: "risk",
+      title: "Heritage Risk Intelligence Dashboard",
+      path: "/risk-map"
+    });
   }, []);
 
   const handleMapSearchPerformed = (query: string, lat: number, lng: number) => {

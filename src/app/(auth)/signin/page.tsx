@@ -31,6 +31,27 @@ export default function SignInPage() {
       }
 
       localStorage.setItem("user_token", data.token);
+      if (data.user) {
+        localStorage.setItem(
+          "userAccount",
+          JSON.stringify({
+            id: data.user.id,
+            name: data.user.name,
+            email: data.user.email,
+          })
+        );
+        localStorage.setItem(
+          "user_profile",
+          JSON.stringify({
+            id: data.user.id,
+            name: data.user.name,
+            email: data.user.email,
+            image: "",
+            interests: ["Architecture", "Art"], // default starting interests
+            createdAt: new Date().toISOString(),
+          })
+        );
+      }
       router.push("/explore");
     } catch (err: any) {
       setError(err.message);

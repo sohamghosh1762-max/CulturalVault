@@ -18,8 +18,25 @@ export default function StoryCard({
   const isOwner =
     currentUser?.id === story?.userId;
 
+  const handleDragStart = (e: React.DragEvent) => {
+    e.dataTransfer.setData("application/json", JSON.stringify({
+      id: story.id || story._id,
+      title: story.title,
+      type: "story",
+      category: story.category || "Stories",
+      description: story.description,
+      region: story.region,
+      language: story.language,
+      narrator: story.narrator
+    }));
+  };
+
   return (
-    <div className="border rounded-2xl p-6 bg-card hover:shadow-xl hover:scale-[1.02] transition-all">
+    <div 
+      draggable
+      onDragStart={handleDragStart}
+      className="border rounded-2xl p-6 bg-card hover:shadow-xl hover:scale-[1.02] transition-all cursor-grab active:cursor-grabbing"
+    >
 
       {/* Story Content */}
       <Link href={`/stories/${story._id || story.id}`}>
@@ -54,10 +71,17 @@ export default function StoryCard({
             {story.userName || "Unknown User"}
           </div>
 
-          <div className="mt-4 text-primary font-medium">
-            View Story →
+          <div className="mt-4 text-primary font-medium flex items-center justify-between">
+            <span>View Story →</span>
           </div>
 
+          <div className="mt-4 pt-3 border-t border-border/50 flex items-center justify-between text-[11px] text-muted-foreground">
+            <span>📅 {story.createdAt ? new Date(story.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now"}</span>
+            <div className="flex items-center gap-2.5">
+              <span>👁️ {story.views !== undefined ? story.views : 0}</span>
+              <span>❤️ {story.likes !== undefined ? story.likes : 0}</span>
+            </div>
+          </div>
         </div>
       </Link>
 
